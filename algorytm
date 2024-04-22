@@ -1,0 +1,8 @@
+nmap -A  192.168.191.144 -p 1-65535 -T5
+sudo nmap -sU 192.168.248.145  
+nmap -sV --script vuln  192.168.191.144 -p 80
+
+echo "version" | nc 192.168.238.143 3003
+gobuster dir -u http://192.168.248.145 -w /usr/share/wordlists/dirb/big.txt
+
+https://www.exploit-db.com
