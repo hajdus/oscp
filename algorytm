@@ -4,5 +4,7 @@ nmap -sV --script vuln  192.168.191.144 -p 80
 
 echo "version" | nc 192.168.238.143 3003
 gobuster dir -u http://192.168.248.145 -w /usr/share/wordlists/dirb/big.txt
+gobuster dns -d devvortex.htb -w /usr/share/wordlists/subdomains-top1million.txt -t 20 
+
 
 https://www.exploit-db.com
