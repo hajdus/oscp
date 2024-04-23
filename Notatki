@@ -46,7 +46,7 @@ wpscan --url 192.168.212.47 --api-token apitoken212312
 ____________________________________
 joomla SCAN
 ____________________________________
-joomscan -u http://dev.devvortex.htb/administrator
+joomscan -u http://dev.devvortex.htb/
 
 ____________________________________
 WINDOWS REMOTE SHELL
