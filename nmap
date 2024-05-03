@@ -6,4 +6,3 @@ sudo nmap  --script http-config-backup 10.10.11.249
 
 Skrypt vulscan dodaje Nmapowi funkcjonalność skanera podatności. 
 sudo nmap -sV --script=vulscan/vulscan  10.10.11.249
-nmap -sV --script vulscan/vulscan --script-args vulscanoutput='{id}\t{link}' 10.10.11.249
