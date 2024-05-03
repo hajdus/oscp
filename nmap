@@ -1,8 +1,11 @@
-Domyślnie zwraca adresy e-mail oraz adresy IP:
+#Domyślnie zwraca adresy e-mail oraz adresy IP:
 sudo nmap -sV --script http-grep  10.10.11.249
 
-Skrypt http-config-backup wysyła wiele zapytań do serwera WWW, próbując uzyskać kopie konfiguracji popularnych CMS’ów pozostawionych przez użytkownika lub edytor tekstowy.
+#Skrypt http-config-backup wysyła wiele zapytań do serwera WWW, próbując uzyskać kopie konfiguracji popularnych CMS’ów pozostawionych przez użytkownika lub edytor tekstowy.
 sudo nmap  --script http-config-backup 10.10.11.249
 
-Skrypt vulscan dodaje Nmapowi funkcjonalność skanera podatności. 
+#Skrypt vulscan dodaje Nmapowi funkcjonalność skanera podatności. 
 sudo nmap -sV --script=vulscan/vulscan  10.10.11.249
+
+#próbuje odnaleźć jak najwięcej subdomen badanego hosta korzystając z najczęściej używanych nazw subdomenowych.
+sudo nmap -sV --script=dns-brute  10.10.11.249 
