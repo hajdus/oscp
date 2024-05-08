@@ -1,0 +1,11 @@
+sudo service vsftpd start
+
+ftp
+open 10.10.14.218
+user milo
+pass pass
+binary
+put file.txt
+quit
+
+sudo service vsftpd stop
