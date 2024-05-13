@@ -1,0 +1,2 @@
+zip file
+zip2john /path/to/your/protected.zip > ziphash.txt
