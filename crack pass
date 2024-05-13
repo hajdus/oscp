@@ -1,2 +1,4 @@
 zip file
 zip2john /path/to/your/protected.zip > ziphash.txt
+john ziphash.txt
+john ziphash.txt --wordlist=/usr/share/wordlists/rockyou.txt 
