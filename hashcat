@@ -1,0 +1,1 @@
+sudo hashcat -m 0 mailing.htb /usr/share/wordlists/rockyou.txt -> MD5
