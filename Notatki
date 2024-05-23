@@ -11,6 +11,7 @@ impacket-smbserver files . -smb2support
 _______________________
 RDP:
 xfreerdp /v:192.168.197.196 /u:offsec /p:lab 
+evil-winrm -i <target IP> -u Administrator -p <password>
 
 ______________________
 
