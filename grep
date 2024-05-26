@@ -1,0 +1,3 @@
+Find string in folder
+
+grep -Rnw '/home/milo' -e 'pass'
