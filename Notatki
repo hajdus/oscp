@@ -12,6 +12,8 @@ _______________________
 RDP:
 xfreerdp /v:192.168.197.196 /u:offsec /p:lab 
 evil-winrm -i <target IP> -u Administrator -p <password>
+impacket-psexec administrator@10.129.183.142
+
 
 ______________________
 
