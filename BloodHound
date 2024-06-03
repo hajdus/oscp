@@ -1,6 +1,7 @@
 ldapdomaindump 10.10.5.11
 ldd2bloodhound
 
+sudo neo4j console 
 Open BloodHount
 u: neo4j
 p: D**
