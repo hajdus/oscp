@@ -115,4 +115,8 @@ use sensitive_information;
 show collections;
 db.flag.find().pretty();
 ____________________________________
+SPRAWDZANIE POŚWIADCZEŃ
+crackmapexec smb 10.10.11.5 -u users.txt -p pass.txt
+
+
 
