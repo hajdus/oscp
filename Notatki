@@ -131,3 +131,14 @@ crackmapexec smb 10.10.11.5 -u users.txt -p pass.txt
 
 
 
+ssh -i id_rsa john@10.10.11.13
+chmod 600 id_rsa
+
+
+
+
+
+
+
+
+
