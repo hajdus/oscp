@@ -1,3 +1,4 @@
 Find string in folder
 
 grep -Rnw '/home/milo' -e 'pass'
+sudo grep -r 'john'  
