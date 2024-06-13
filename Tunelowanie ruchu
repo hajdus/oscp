@@ -1,2 +1,7 @@
 From my host connect to target machine
 ssh -L 1234:localhost:5432 christine@{target_IP}
+
+
+windows:
+./chisel.exe client 10.10.14.9:9001 R:9090:127.0.0.1:9090 R:9091:127.0.0.1:9091
+
