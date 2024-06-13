@@ -1,6 +1,10 @@
 nmap -A  192.168.191.144 -p 1-65535 -T5
 sudo nmap -sU 192.168.248.145  
 nmap -sV --script vuln  192.168.191.144 -p 80
+ls /usr/share/nmap/scripts |  grep smb
+└─$ nmap -sV --script smb-enum-shares  solarlab.htb -p 445
+
+
 
 echo "version" | nc 192.168.238.143 3003
 gobuster dir -u http://192.168.248.145 -w /usr/share/wordlists/dirb/big.txt
