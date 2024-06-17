@@ -1,0 +1,12 @@
+devvortex.htb  -> gobuster -> joomla -> apport-cliwith
+bizness.htb    -> ApacheOFBIZ vuln -> hashcat
+crafty.htb     -> maincraft -> log4j -> jar analize -> run as powershell
+usage.htb      -> sql injection -> exiftool -> .monitrc -> 7za
+mailing.htb    -> hmailserver -> MS Outlook RCE -> LibreOffice vuln
+capiclean.htb  -> XSS -> Cookie -> SSTI -> mysql -> qdf
+board.htb      -> dolibarr exp -> Enlightenment
+freelancer.htb ->  IDOR -> xp_cmdshell -> runAsCS -> AV bypass -> DMP Analize -> AD 
+runner.htb     -> teamcity vuln -> backupfiles -> port forward -> portainer.io
+blurry.htb     -> ClearML -> /models/*.pth
+solarlab.htb   -> SMB -> ReportLab PDF Library VULN -> port forward -> openfire vuln
+editorial.htb  -> SSRF -> .git logs -> git documentation RCE
