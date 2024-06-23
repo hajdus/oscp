@@ -10,3 +10,5 @@ runner.htb     -> teamcity vuln -> backupfiles -> port forward -> portainer.io
 blurry.htb     -> ClearML -> /models/*.pth
 solarlab.htb   -> SMB -> ReportLab PDF Library VULN -> port forward -> openfire vuln
 editorial.htb  -> SSRF -> .git logs -> git documentation RCE
+jab.htb        -> jab XMPP comunikator -> Kerberos hash -> openfire vuln(CVE-2023-32315)
+
