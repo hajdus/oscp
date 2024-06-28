@@ -1,7 +1,15 @@
 ldapdomaindump 10.10.5.11
 ldd2bloodhound
 
+OLD BLOODHUND:
 sudo neo4j console 
 Open BloodHount
 u: neo4j
 p: D**
+-----------
+NEW BLOODHOUND COMUNITY EDITION
+curl -L https://ghst.ly/getbhce | sudo docker-compose -f - up
+http://localhost:8080 
+admin
+initial pass form Log D..$%^
+
