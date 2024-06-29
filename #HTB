@@ -11,4 +11,4 @@ blurry.htb     -> ClearML -> /models/*.pth
 solarlab.htb   -> SMB -> ReportLab PDF Library VULN -> port forward -> openfire vuln
 editorial.htb  -> SSRF -> .git logs -> git documentation RCE
 jab.htb        -> jab XMPP comunikator -> Kerberos hash -> openfire vuln(CVE-2023-32315)
-
+axlle.htb      -> xll (xls) pishing -> HTA rev shell -> bloudhount -> AD password force change -> exe rev shell
