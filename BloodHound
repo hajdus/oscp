@@ -9,6 +9,11 @@ p: D**
 -----------
 NEW BLOODHOUND COMUNITY EDITION
 curl -L https://ghst.ly/getbhce | sudo docker-compose -f - up
+lub
+
+┌──(milo㉿Kali2023)-[~/BloodHound]
+└─$ sudo docker-compose up 
+
 http://localhost:8080 
 admin
 initial pass form Log D..$%^
