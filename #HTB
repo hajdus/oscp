@@ -13,3 +13,4 @@ editorial.htb  -> SSRF -> .git logs -> git documentation RCE
 jab.htb        -> jab XMPP comunikator -> Kerberos hash -> openfire vuln(CVE-2023-32315)
 axlle.htb      -> xll (xls) pishing -> HTA rev shell -> bloudhount -> AD password force change -> exe rev shell
 blazered.htb   -> blazor -> reverse engenering dll -> jwt -> sql injection -> bloodhount -> WriteSPN -> logon scrip -> mimikatz(dcsync)
+jerry.htb      -> apache manager -> upload war
