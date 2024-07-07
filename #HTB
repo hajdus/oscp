@@ -15,3 +15,4 @@ axlle.htb      -> xll (xls) pishing -> HTA rev shell -> bloudhount -> AD passwor
 blazered.htb   -> blazor -> reverse engenering dll -> jwt -> sql injection -> bloodhount -> WriteSPN -> logon scrip -> mimikatz(dcsync)
 jerry.htb      -> apache manager -> upload war
 cap.htb        -> indor -> pcap analize -> ssh -> Capabilities (setuid)
+permx.htb      -> chamilo(learning platform) -> ssh with db pass -> simlink sh scrip -> su root 
