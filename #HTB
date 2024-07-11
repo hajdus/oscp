@@ -16,3 +16,4 @@ blazered.htb   -> blazor -> reverse engenering dll -> jwt -> sql injection -> bl
 jerry.htb      -> apache manager -> upload war
 cap.htb        -> indor -> pcap analize -> ssh -> Capabilities (setuid)
 permx.htb      -> chamilo(learning platform) -> ssh with db pass -> simlink sh scrip -> su root 
+wifineticTwo.  -> openplc defult logn -> exploit -> oneshot wifi -> ssh openwrt
