@@ -18,3 +18,4 @@ cap.htb        -> indor -> pcap analize -> ssh -> Capabilities (setuid)
 permx.htb      -> chamilo(learning platform) -> ssh with db pass -> simlink sh scrip -> su root 
 wifineticTwo.  -> openplc defult logn -> exploit -> oneshot wifi -> ssh openwrt
 keeper.htb     -> default password -> users info -> ssh -> keepass hack -> putty gen ssh key
+netmon.htb     -> ftp -> procmon bakupfile -> password guess -> rce
