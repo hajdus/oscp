@@ -20,3 +20,4 @@ wifineticTwo.  -> openplc defult logn -> exploit -> oneshot wifi -> ssh openwrt
 keeper.htb     -> default password -> users info -> ssh -> keepass hack -> putty gen ssh key
 netmon.htb     -> ftp -> procmon bakupfile -> password guess -> rce
 Wifinetic.htb  -> ftp -> passworf from backupfile -> ssh netadmin -> wifi hack -> su root
+greenhorn.htb  -> pluck -> module install -> su user -> depixel -> su root
