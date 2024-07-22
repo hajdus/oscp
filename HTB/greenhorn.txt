@@ -1,0 +1,136 @@
+─$ nmap -A 10.10.11.25 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-22 20:04 CEST
+Warning: 10.10.11.25 giving up on port because retransmission cap hit (2).
+Stats: 0:01:50 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 73.04% done; ETC: 20:07 (0:00:41 remaining)
+Stats: 0:02:59 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 66.67% done; ETC: 20:08 (0:00:14 remaining)
+Nmap scan report for 10.10.11.25
+Host is up (0.049s latency).
+Not shown: 64963 closed tcp ports (conn-refused), 569 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 57d6928a7244841729eb5cc9636afefd (ECDSA)
+|_  256 40ea17b1b6c53f4256674a3cee75232f (ED25519)
+80/tcp   open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://greenhorn.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+3000/tcp open  ppp?
+| fingerprint-strings: 
+|   GenericLines, Help, RTSPRequest: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Cache-Control: max-age=0, private, must-revalidate, no-transform
+|     Content-Type: text/html; charset=utf-8
+|     Set-Cookie: i_like_gitea=c75d60159427fadc; Path=/; HttpOnly; SameSite=Lax
+|     Set-Cookie: _csrf=OHNQeVpHCnTs3gMDgCKGDS0U3Q46MTcyMTY3MTY1ODMxMTAwNjI2Ng; Path=/; Max-Age=86400; HttpOnly; SameSite=Lax
+|     X-Frame-Options: SAMEORIGIN
+|     Date: Mon, 22 Jul 2024 18:07:38 GMT
+|     <!DOCTYPE html>
+|     <html lang="en-US" class="theme-auto">
+|     <head>
+|     <meta name="viewport" content="width=device-width, initial-scale=1">
+|     <title>GreenHorn</title>
+|     <link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiR3JlZW5Ib3JuIiwic2hvcnRfbmFtZSI6IkdyZWVuSG9ybiIsInN0YXJ0X3VybCI6Imh0dHA6Ly9ncmVlbmhvcm4uaHRiOjMwMDAvIiwiaWNvbnMiOlt7InNyYyI6Imh0dHA6Ly9ncmVlbmhvcm4uaHRiOjMwMDAvYXNzZXRzL2ltZy9sb2dvLnBuZyIsInR5cGUiOiJpbWFnZS9wbmciLCJzaXplcyI6IjUxMng1MTIifSx7InNyYyI6Imh0dHA6Ly9ncmVlbmhvcm4uaHRiOjMwMDAvYX
+|   HTTPOptions: 
+|     HTTP/1.0 405 Method Not Allowed
+|     Allow: HEAD
+|     Allow: HEAD
+|     Allow: GET
+|     Cache-Control: max-age=0, private, must-revalidate, no-transform
+|     Set-Cookie: i_like_gitea=727336245b1fb765; Path=/; HttpOnly; SameSite=Lax
+|     Set-Cookie: _csrf=2K7w8VRjcNHoaXbdXjVDNuMzwyM6MTcyMTY3MTY2MzgxNTIwMzY2OQ; Path=/; Max-Age=86400; HttpOnly; SameSite=Lax
+|     X-Frame-Options: SAMEORIGIN
+|     Date: Mon, 22 Jul 2024 18:07:43 GMT
+|_    Content-Length: 0
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port3000-TCP:V=7.93%I=7%D=7/22%Time=669E9FE9%P=aarch64-unknown-linux-gn
+SF:u%r(GenericLines,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type
+SF::\x20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x2
+SF:0Bad\x20Request")%r(GetRequest,2A60,"HTTP/1\.0\x20200\x20OK\r\nCache-Co
+SF:ntrol:\x20max-age=0,\x20private,\x20must-revalidate,\x20no-transform\r\
+SF:nContent-Type:\x20text/html;\x20charset=utf-8\r\nSet-Cookie:\x20i_like_
+SF:gitea=c75d60159427fadc;\x20Path=/;\x20HttpOnly;\x20SameSite=Lax\r\nSet-
+SF:Cookie:\x20_csrf=OHNQeVpHCnTs3gMDgCKGDS0U3Q46MTcyMTY3MTY1ODMxMTAwNjI2Ng
+SF:;\x20Path=/;\x20Max-Age=86400;\x20HttpOnly;\x20SameSite=Lax\r\nX-Frame-
+SF:Options:\x20SAMEORIGIN\r\nDate:\x20Mon,\x2022\x20Jul\x202024\x2018:07:3
+SF:8\x20GMT\r\n\r\n<!DOCTYPE\x20html>\n<html\x20lang=\"en-US\"\x20class=\"
+SF:theme-auto\">\n<head>\n\t<meta\x20name=\"viewport\"\x20content=\"width=
+SF:device-width,\x20initial-scale=1\">\n\t<title>GreenHorn</title>\n\t<lin
+SF:k\x20rel=\"manifest\"\x20href=\"data:application/json;base64,eyJuYW1lIj
+SF:oiR3JlZW5Ib3JuIiwic2hvcnRfbmFtZSI6IkdyZWVuSG9ybiIsInN0YXJ0X3VybCI6Imh0d
+SF:HA6Ly9ncmVlbmhvcm4uaHRiOjMwMDAvIiwiaWNvbnMiOlt7InNyYyI6Imh0dHA6Ly9ncmVl
+SF:bmhvcm4uaHRiOjMwMDAvYXNzZXRzL2ltZy9sb2dvLnBuZyIsInR5cGUiOiJpbWFnZS9wbmc
+SF:iLCJzaXplcyI6IjUxMng1MTIifSx7InNyYyI6Imh0dHA6Ly9ncmVlbmhvcm4uaHRiOjMwMD
+SF:AvYX")%r(Help,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x
+SF:20text/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Ba
+SF:d\x20Request")%r(HTTPOptions,1A4,"HTTP/1\.0\x20405\x20Method\x20Not\x20
+SF:Allowed\r\nAllow:\x20HEAD\r\nAllow:\x20HEAD\r\nAllow:\x20GET\r\nCache-C
+SF:ontrol:\x20max-age=0,\x20private,\x20must-revalidate,\x20no-transform\r
+SF:\nSet-Cookie:\x20i_like_gitea=727336245b1fb765;\x20Path=/;\x20HttpOnly;
+SF:\x20SameSite=Lax\r\nSet-Cookie:\x20_csrf=2K7w8VRjcNHoaXbdXjVDNuMzwyM6MT
+SF:cyMTY3MTY2MzgxNTIwMzY2OQ;\x20Path=/;\x20Max-Age=86400;\x20HttpOnly;\x20
+SF:SameSite=Lax\r\nX-Frame-Options:\x20SAMEORIGIN\r\nDate:\x20Mon,\x2022\x
+SF:20Jul\x202024\x2018:07:43\x20GMT\r\nContent-Length:\x200\r\n\r\n")%r(RT
+SF:SPRequest,67,"HTTP/1\.1\x20400\x20Bad\x20Request\r\nContent-Type:\x20te
+SF:xt/plain;\x20charset=utf-8\r\nConnection:\x20close\r\n\r\n400\x20Bad\x2
+SF:0Request");
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 243.61 seconds
+                  
+                  
+
+/web.php              (Status: 404) [Size: 16]
+/data                 (Status: 301) [Size: 178] [--> http://greenhorn.htb/data/]
+/docs                 (Status: 301) [Size: 178] [--> http://greenhorn.htb/docs/]
+/favicon.ico          (Status: 404) [Size: 162]
+/files                (Status: 301) [Size: 178] [--> http://greenhorn.htb/files/]
+/images               (Status: 301) [Size: 178] [--> http://greenhorn.htb/images/]
+/robots.txt           (Status: 200) [Size: 47]
+/data                 (Status: 301) [Size: 178] [--> http://greenhorn.htb/data/]
+/docs                 (Status: 301) [Size: 178] [--> http://greenhorn.htb/docs/]
+/favicon.ico          (Status: 404) [Size: 162]
+/files                (Status: 301) [Size: 178] [--> http://greenhorn.htb/files/]
+/images               (Status: 301) [Size: 178] [--> http://greenhorn.htb/images/]
+
+/admin                (Status: 303) [Size: 38] [--> /user/login]
+/explore              (Status: 303) [Size: 41] [--> /explore/repos]
+/favicon.ico          (Status: 301) [Size: 58] [--> /assets/img/favicon.png]
+/issues               (Status: 303) [Size: 38] [--> /user/login]
+/junior               (Status: 200) [Size: 16565]
+/milestones           (Status: 303) [Size: 38] [--> /user/login]
+/notifications        (Status: 303) [Size: 38] [--> /user/login]
+/sitemap.xml          (Status: 200) [Size: 287]
+/v2                   (Status: 401) [Size: 50]
+/admin                (Status: 303) [Size: 38] [--> /user/login]
+/favicon.ico          (Status: 301) [Size: 58] [--> /assets/img/favicon.png]
+/issues               (Status: 303) [Size: 38] [--> /user/login]
+/notifications        (Status: 303) [Size: 38] [--> /user/login]
+/v2                   (Status: 401) [Size: 50]
+                  
+http://greenhorn.htb:3000/GreenAdmin/GreenHorn/src/branch/main/data/settings/pass.php
+iloveyou1             
+         
+exit module tinymce add revshell
+install module         
+su junior
+iloveyou1   
+
+download openvas pdf
+
+https://github.com/spipm/Depix
+
+python3 depix.py \
+    -p /home/milo/Downloads/0.png \
+    -s images/searchimages/debruinseq_notepad_Windows10_closeAndSpaced.png \
+    -o outputimg.png
+
+
+sidefromsidetheothersidesidefromsidetheotherside
