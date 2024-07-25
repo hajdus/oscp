@@ -22,3 +22,4 @@ netmon.htb     -> ftp -> procmon bakupfile -> password guess -> rce
 Wifinetic.htb  -> ftp -> passworf from backupfile -> ssh netadmin -> wifi hack -> su root
 greenhorn.htb  -> pluck -> module install -> su user -> depixel -> su root
 knife.htb      -> PHP RCE -> Telnet -> Knife priv escalation
+sua.htb        -> SSRF Request-Baskets -> exploit Maltrail -> systemctl priv escalation
