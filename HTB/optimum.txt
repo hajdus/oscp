@@ -1,0 +1,19 @@
+└─$ nmap -A 10.10.10.8 -p 1-65535
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-26 18:32 CEST
+Stats: 0:01:04 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 43.44% done; ETC: 18:35 (0:01:23 remaining)
+Nmap scan report for 10.10.10.8
+Host is up (0.030s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    HttpFileServer httpd 2.3
+|_http-server-header: HFS 2.3
+|_http-title: HFS /
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+https://www.exploit-db.com/exploits/49584
+
+windows sever 2021 R2
+https://github.com/sensepost/ms16-098
+
+
