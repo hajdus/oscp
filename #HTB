@@ -27,3 +27,4 @@ bashed.htb     -> phpbash -> updalod revshell -> edit python script
 optimum.htb    -> HFS Exploit -> Win sever 2012 priv escalation
 cozyhosting.   -> actuator cookie -> sql injection -> jar unzip -> psql user hash -> su -> ssh prvi escalation
 searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp file as argument
+return.htb     -> nc pass -> evil-winrm ->create service ->nc as nt system
