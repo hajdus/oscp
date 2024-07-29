@@ -29,3 +29,4 @@ cozyhosting.   -> actuator cookie -> sql injection -> jar unzip -> psql user has
 searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp file as argument
 (lin) return.htb     -> nc pass -> evil-winrm ->create service ->nc as nt system
 (win) granny.htb     -> IIS 6.0 rce -> generate rev shell ->curl put file -> Churrasco root rev shell
+(lin) broker.htb -> Apache ActiveMQ RCE -> sudo nginix priv escalation -> ssh with key
