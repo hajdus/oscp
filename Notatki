@@ -144,7 +144,7 @@ ____________________________________-
 -system /home/milo/HTB/freelancer/registry/hive_files/0xffffd30679c46000-SYSTEM-MACHINE_SYSTEM.reghive -security 0xffffd3067d7f0000-SECURITY-MACHINE_SECURITY.reghive local 
 
 
-
+snmpwalk -v 2c -c public 10.10.10.251
 
 
 
