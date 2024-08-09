@@ -33,4 +33,5 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin) antque.htb  -> snmpwalk -> telnet -> chisel port forward -> cups exploit
 (lin)Blocky.htb   -> wp plugin -> author post -> ssh author -> sudo -l
 (lin)Resource.htb -> usr/local/lib/php/pearcmd&+config-create -> ssh key gen and manipulation
+(lin)Validation.htb -> sqlinjection -> nc -> su root
 
