@@ -13,6 +13,9 @@ gobuster dns -d devvortex.htb -w /usr/share/wordlists/subdomains-top1million.txt
 gobuster vhost --append-domain -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt -u http://devvortex.htb
 gobuster dir -u http://192.168.248.145 -w /usr/share/wordlists/dirb/big.txt -x .php, .txt 
 
+sprawdzaj lokalizacje cgi-bin
+gobuster dir -u http://10.10.10.56/cgi-bin/ -w /usr/share/wordlists/dirb/big.txt  -x sh, cgi, pl
+
 
 https://www.exploit-db.com
 
