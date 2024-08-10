@@ -35,4 +35,5 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)Resource.htb -> usr/local/lib/php/pearcmd&+config-create -> ssh key gen and manipulation
 (lin)Validation.htb -> sqlinjection -> nc -> su root
 (lin)Shocker.htb -> apache cgi -> shellshock cgi cve -> sudo -l -> perl priv escalation
+(lin)grandps.htb -> iis 6 rev shell -> churrasco.exe priv escalation 
 
