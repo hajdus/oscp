@@ -37,4 +37,5 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)Shocker.htb -> apache cgi -> shellshock cgi cve -> sudo -l -> perl priv escalation
 (lin)grandps.htb -> iis 6 rev shell -> churrasco.exe priv escalation 
 (lin)sea.htb     -> Wonder CMS Exploit -> ssh -> Tunel 8080 -> comand injection
+(lin) mirai.htb  -> pi hole -> ssh as pi user -> restore usb -> strings usb image
 
