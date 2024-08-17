@@ -40,4 +40,4 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin) mirai.htb  -> pi hole -> ssh as pi user -> restore usb -> strings usb image
 (lin)sense.htb -> pfsense exploit -> root
 (lin)codify.htb -> vm2 sandbox exploit -> hashcat -> ssh -> memory dump (pspy64s) - su root
-
+(win)devel.htb -> rev shell via aspx -> win 7600 priv escalation -> edit exp to shell as root
