@@ -42,3 +42,4 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)codify.htb -> vm2 sandbox exploit -> hashcat -> ssh -> memory dump (pspy64s) - su root
 (win)devel.htb -> rev shell via aspx -> win 7600 priv escalation -> edit exp to shell as root
 (win)forest.htb -> enum4linux -> impacket-GetNPUsers -> evil-winrm  -> bloodhound -> powerview.ps1 -> impacket-secretsdump  -> impacket-psexec
+(lin)nibbles.htb -> html sorce code -> nibbles exploit -> edit sh script
