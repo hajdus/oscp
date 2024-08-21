@@ -145,6 +145,11 @@ ____________________________________-
 
 
 snmpwalk -v 2c -c public 10.10.10.251
+______________________________________
+Decompile python.exe
+____________________________________-
+/home/milo/.local/bin/pydumpck python.exe -p pycdc
+
 
 
 
