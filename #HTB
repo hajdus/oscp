@@ -44,3 +44,4 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (win)forest.htb -> enum4linux -> impacket-GetNPUsers -> evil-winrm  -> bloodhound -> powerview.ps1 -> impacket-secretsdump  -> impacket-psexec
 (lin)nibbles.htb -> html sorce code -> nibbles exploit -> edit sh script
 (lin)explore.htb -> android ES file exploit -> image with pass -> ssh -> port forwarding -> adb root
+(lin)precious.htb -> ruby rev shell -> /home/ruby/.bundle -> rb scrip deserialization yaml 
