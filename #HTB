@@ -47,3 +47,4 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)precious.htb -> ruby rev shell -> /home/ruby/.bundle -> rb scrip deserialization yaml 
 (lin)monitorthree.htb ->sqlmap sql injection dump pass hash -> cacti rce -> mysql hash -> su -> duplicati baypass -> root
 (lin)photobomb.htb -> pass in js file -> sqli rev shell -> priv escalation /opt/.bashrc in bash script
+(lin)sightless.htb ->sqlpad rce -> etc/shadows -> hashcat -> ssh -> suid sudo
