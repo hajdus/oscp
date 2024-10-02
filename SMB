@@ -1,0 +1,2 @@
+enum4linux
+crackmapexec smb cicada.htb  -u 'guest' -p ''  --rid-brute
