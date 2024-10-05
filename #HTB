@@ -49,7 +49,7 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)photobomb.htb -> pass in js file -> sqli rev shell -> priv escalation /opt/.bashrc in bash script
 (lin)sightless.htb ->sqlpad rce -> etc/shadows -> hashcat -> ssh -> suid sudo
 (win)cicada.htb -> AD enum -> smb enum -> users from smb enum -> backup manager-> sam/system admin hash
-(lin)Busqueda.htb -> 
+(lin)Busqueda.htb -> flask sqli ->.git config pass -> ssh svc -> gitea -> sudo sh scrip -> in sh file path "./file" -> replace sh file
 
 Linux
 
