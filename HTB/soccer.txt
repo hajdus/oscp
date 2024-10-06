@@ -1,0 +1,95 @@
+10.10.11.194
+└─$ nmap -A 10.10.11.194 -p 1-65535 -T5 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2024-10-06 15:41 CEST
+Warning: 10.10.11.194 giving up on port because retransmission cap hit (2).
+Nmap scan report for 10.10.11.194
+Host is up (0.044s latency).
+Not shown: 65509 closed tcp ports (conn-refused)
+PORT      STATE    SERVICE         VERSION
+22/tcp    open     ssh             OpenSSH 8.2p1 Ubuntu 4ubuntu0.5 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 ad0d84a3fdcc98a478fef94915dae16d (RSA)
+|   256 dfd6a39f68269dfc7c6a0c29e961f00c (ECDSA)
+|_  256 5797565def793c2fcbdb35fff17c615c (ED25519)
+80/tcp    open     http            nginx 1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://soccer.htb/
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+5066/tcp  filtered stanag-5066
+5260/tcp  filtered unknown
+8613/tcp  filtered canon-bjnp3
+8619/tcp  filtered unknown
+9091/tcp  open     xmltec-xmlmail?
+| fingerprint-strings: 
+|   DNSStatusRequestTCP, DNSVersionBindReqTCP, Help, RPCCheck, SSLSessionReq, drda, informix: 
+|     HTTP/1.1 400 Bad Request
+|     Connection: close
+|   GetRequest: 
+|     HTTP/1.1 404 Not Found
+|     Content-Security-Policy: default-src 'none'
+|     X-Content-Type-Options: nosniff
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 139
+|     Date: Sun, 06 Oct 2024 13:42:03 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html lang="en">
+|     <head>
+|     <meta charset="utf-8">
+|     <title>Error</title>
+|     </head>
+|     <body>
+|     <pre>Cannot GET /</pre>
+|     </body>
+|     </html>
+|   HTTPOptions, RTSPRequest: 
+|     HTTP/1.1 404 Not Found
+|     Content-Security-Policy: default-src 'none'
+|     X-Content-Type-Options: nosniff
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 143
+|     Date: Sun, 06 Oct 2024 13:42:03 GMT
+|     Connection: close
+|     <!DOCTYPE html>
+|     <html lang="en">
+|     <head>
+|     <meta charset="utf-8">
+|     <title>Error</title>
+|     </head>
+|     <body>
+|     <pre>Cannot OPTIONS /</pre>
+|     </body>
+|_    </html>
+10951/tcp filtered unknown
+15803/tcp filtered unknown
+17896/tcp filtered unknown
+21095/tcp filtered unknown
+24527/tcp filtered unknown
+30668/tcp filtered unknown
+34413/tcp filtered unknown
+41563/tcp filtered unknown
+42920/tcp filtered unknown
+48878/tcp filtered unknown
+50117/tcp filtered unknown
+53043/tcp filtered unknown
+57514/tcp filtered unknown
+59858/tcp filtered unknown
+60136/tcp filtered unknown
+61297/tcp filtered unknown
+61316/tcp filtered unknown
+63592/tcp filtered unknown
+64135/tcp filtered unknown
+
+
+
+http://soccer.htb/tiny/
+user/12345
+admin / admin@123
+
+rev shell php
+
+player
+PlayerOftheMatch2022
+
+dstat priv escalation 
+https://gtfobins.github.io/gtfobins/dstat/
+
