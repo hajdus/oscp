@@ -51,6 +51,7 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (win)cicada.htb -> AD enum -> smb enum -> users from smb enum -> backup manager-> sam/system admin hash
 (lin)Busqueda.htb -> flask sqli ->.git config pass -> ssh svc -> gitea -> sudo sh scrip -> in sh file path "./file" -> replace sh file
 (lin)soccer -> tiny file manager -> revshell php -> now domain -> sqli -> sqlmap -> ssh -> dstat priv escalation 
+(lin)pandora -> snmpwalk -> ssh -> port forwarding -> pandora rce -> pandora backup priv escalation (escape the jail shell)
 
 Linux
 
@@ -60,7 +61,6 @@ Monitored
 Networked
 Help
 Magic
-Pandora
 Builder
 
 WINDOWS:
