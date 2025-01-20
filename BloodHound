@@ -18,3 +18,10 @@ http://localhost:8080
 admin
 initial pass form Log D..$%^
 
+!!!!!
+BLOODHOUND CE !!!!
+!!!!!
+sudo docker-compose -f /opt/bloodhoundce/docker-compose.yml up
+http://localhost:8080/ui/login
+admin
+initial pass form Log D..$
