@@ -19,7 +19,7 @@ admin
 initial pass form Log D..$%^
 
 !!!!!
-BLOODHOUND CE !!!!
+BLOODHOUND CE !!!! ->https://m4lwhere.medium.com/the-ultimate-guide-for-bloodhound-community-edition-bhce-80b574595acf
 !!!!!
 sudo docker-compose -f /opt/bloodhoundce/docker-compose.yml up
 http://localhost:8080/ui/login
