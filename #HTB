@@ -53,6 +53,7 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 (lin)soccer -> tiny file manager -> revshell php -> now domain -> sqli -> sqlmap -> ssh -> dstat priv escalation 
 (lin)pandora -> snmpwalk -> ssh -> port forwarding -> pandora rce -> pandora backup priv escalation (escape the jail shell)
 (lin)chemisty -> cif file rce -> db pass -> hashcat -> ssh -> port 8080 -> aiohttp exploit 
+lin)underpass -> snmpwallk -> daloradius server -> ssh -> mosh exp
 
 Linux
 
