@@ -3,7 +3,7 @@
 ```bash
 arp-scan -l  
 ```
-
+`asd`
 ```bash
 netdiscover -r 192.168.57.0/24
 ```
