@@ -95,6 +95,6 @@ $pwsafe$*3*4ff588b74906263ad2abba592aba35d58bcd3a57e307bf79c8479dec6b3149aa*5242
 john --wordlist=/usr/share/wordlists/rockyou.txt passafe1.txt 
 tekieromucho     (Backu) 
 
-emily 
+emily UXLCI5iETUsIBoFVTj8yQFKoHjXmb
 
 
