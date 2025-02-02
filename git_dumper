@@ -1,0 +1,5 @@
+# -r: Recursive
+wget -r https://example.com/.git/
+cd example.com
+git log --stat
+git checkout <commit_id>
