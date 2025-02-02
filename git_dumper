@@ -3,3 +3,9 @@ wget -r https://example.com/.git/
 cd example.com
 git log --stat
 git checkout <commit_id>
+
+
+----------
+└─$ python GitHack.py -u http://dev.linkvortex.htb/.git/ 
+
+
