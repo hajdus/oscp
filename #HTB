@@ -56,6 +56,8 @@ searcher.htb   -> serchor sql injection -> .git pass -> ssh -> rev shell in tmp 
 lin)underpass -> snmpwallk -> daloradius server -> ssh -> mosh exp
 (win)administrator -> AD atack
 (lin)linkVortex - > vhost gobuser -> ./git githack.py -> ssh -> sudo -l -> sh scrip abuse
+(lin)alert.htb ->xss with javascrip -> enumerate via xss -> hash .htpasswd -> ssh tunerlowanie -> www as root
+
 
 Linux
 
