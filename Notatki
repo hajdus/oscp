@@ -162,4 +162,15 @@ python3 git_dumper.py http://siteisup.htb/dev/.git/ web
 
 
 
+smbclient -p 4455 -U Peter -L s1.cnpen-mock.secops.group
+smbclient -p 4455 -U Peter //s1.cnpen-mock.secops.group/secret 
+
+certharvest@proton.me public key
+
+ssh -i alice_key alice@s2.cnpen-mock.secops.group -p 222
+sftp -P 222 -i alice_key alice@s2.cnpen-mock.secops.group 
+
+
+
+
 
