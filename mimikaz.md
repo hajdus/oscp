@@ -1,5 +1,6 @@
 # Mimikaz Series
-Ft Smukx
+(https://overgrowncarrot1.medium.com/invoke-mimikatz-walkthrough-3c3fd73161cd)
+
 
 ## What is Mimikaz ?
 
