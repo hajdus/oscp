@@ -24,7 +24,7 @@ BLOODHOUND CE !!!! ->https://m4lwhere.medium.com/the-ultimate-guide-for-bloodhou
 sudo docker-compose -f /opt/bloodhoundce/docker-compose.yml up
 http://localhost:8080/ui/login
 admin
-initial pass form Log D..$%^
+initial pass form Log D..$%^&
 
 python3 /home/milo/Desktop/OffSec_narzedzia/BloodHound.py-bloodhound-ce/bloodhound.py -d administrator.htb -u olivia -p ichliebedich -c All 
 -op default_kali_bloodhoundpy --zip  -ns 10.10.11.42
