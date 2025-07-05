@@ -59,6 +59,7 @@ lin)underpass -> snmpwallk -> daloradius server -> ssh -> mosh exp
 (lin)alert.htb ->xss with javascrip -> enumerate via xss -> hash .htpasswd -> ssh tunerlowanie -> www as root
 (lin)titanic.htb -> Path Traversal -> gitea hash crack -> ImageMagick 
 (lin)Fluffy -> AD CA Hacking
+(Academy_lin) Getstarted - GetSimple CMS hack -> Sudo -l
 
 Linux
 
