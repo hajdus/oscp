@@ -1,0 +1,22 @@
+hackowanie azure
+
+https://www.youtube.com/watch?v=8FqEWQJMQ40&list=PLMoaZm9nyKaMG35DVS8Ide7hoDb3T_d1l
+
+MFA check:
+https://github.com/dafthack/MFASweep
+
+Microsoft Graph API interackt
+https://github.com/dafthack/GraphRunner
+
+AzureHoond
+
+AZURE BLOB Storage Explorer
+www/$web/?restype=container&comp=list
+
+dev.megabigtech.com/$web/?restype=container&comp=list
+
+atack key vault 
+https://github.com/NetSPI/MicroBurst
+
+AD toolkit recon
+https://aadinternals.com
