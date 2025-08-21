@@ -4,3 +4,7 @@ smtp-user-enum -M VRFY -U ./footprinting-wordlist.txt -t 10.129.42.195 -m 60 -w 
 
 ---IMAP----
 openssl s_client -connect 10.129.131.238:imaps
+
+---SNMP---
+onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.14.128
+
