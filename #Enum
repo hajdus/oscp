@@ -8,3 +8,6 @@ openssl s_client -connect 10.129.131.238:imaps
 ---SNMP---
 onesixtyone -c /opt/useful/seclists/Discovery/SNMP/snmp.txt 10.129.14.128
 
+---Oracle TNS ---
+./odat.py -h
+
