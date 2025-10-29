@@ -1,0 +1,3 @@
+Zbieranie inforamacji z storny:
+python3 /home/milo/Downloads/ReconSpider.py http://inlanefreight.com
+cat results.json | jq '.comments'
