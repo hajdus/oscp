@@ -1,0 +1,2 @@
+cd /home/milo/sysreptor/deploy/
+docker compose up -d 
