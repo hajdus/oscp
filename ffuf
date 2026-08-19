@@ -1,0 +1,1 @@
+ffuf -u http://cohort.htb/FUZZ -w /usr/share/wordlists/seclists/Discovery/Web-Content/raft-large-directories-lowercase.txt -e .axd,.aspx,.asp,.asmx,.asm,.git,.svn,.bak,.old,.backup,.tmp,.temp,.orig,.save,.swp,.zip,.tar,.gz,.rar,.7zip,.sql,.ini,.conf,.config,.log,.txt,.js,.php,.json,.html -recursion -recursion-depth 3 -k -c
