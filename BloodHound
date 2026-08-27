@@ -28,3 +28,5 @@ initial pass form Log D..*
 
 python3 /home/milo/Desktop/OffSec_narzedzia/BloodHound.py-bloodhound-ce/bloodhound.py -d administrator.htb -u olivia -p ichliebedich -c All 
 -op default_kali_bloodhoundpy --zip  -ns 10.10.11.42
+
+nxc ldap 172.16.139.3 -u phernandez -p bLink182 --dns-server 172.16.139.3 --bloodhound          
