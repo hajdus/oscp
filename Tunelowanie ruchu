@@ -16,3 +16,10 @@ sudo ./chisel server -p 9001 --reverse
 sudo ip route add 172.16.139.0/24 dev ligolo
 session
 start
+#dodanie drugiego tunnelu
+sudo ip tuntap add user $(whoami) mode tun ligolo1 && sudo ip link set ligolo1 up
+sudo ip route add 172.16.210.0/24 dev ligolo1
+on ligolo : 
+listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601
+.\agent.exe -connect 172.16.139.10:11601 -ignore-cert
+start --tun ligolo1
